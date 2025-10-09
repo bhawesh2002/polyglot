@@ -45,7 +45,7 @@ class StorageService {
     audioFile.writeAsBytes(bytes);
   }
 
-  static Future<void> storeTranscribtionFile(
+  static Future<void> storeTranscriptionFile(
       String fileName, String contents) async {
     final audioFile = File(p.join(transcriptionDirPath, fileName));
     audioFile.writeAsString(contents);
