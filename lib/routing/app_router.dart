@@ -7,7 +7,7 @@ import 'package:polyglot/ui/splash/views/splash_view.dart';
 
 final appRouterProvider = Provider((ref) {
   final router = GoRouter(
-    initialLocation: AppRoutes.splash,
+    initialLocation: "/",
     routes: [
       GoRoute(
         name: AppRoutes.splash,
