@@ -6,7 +6,7 @@ import 'package:polyglot/routing/app_router.dart';
 Future<void> main() async {
   Logger.root.onRecord.listen((record) {
     debugPrint(
-        "${record.loggerName} : ${record.level} : ${record.time} <=> Message: ${record.message}${record.error != null ? "\nError: ${record.error}" : ""}${record.stackTrace != null ? "\nStackTrace: ${record.stackTrace}" : ""}");
+        "log:= ${record.loggerName} : ${record.level} : ${record.time} <=> Message: ${record.message}${record.error != null ? "\nError: ${record.error}" : ""}${record.stackTrace != null ? "\nStackTrace: ${record.stackTrace}" : ""}");
   });
   WidgetsFlutterBinding.ensureInitialized();
   runApp(ProviderScope(child: const MainApp()));
