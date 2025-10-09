@@ -1,0 +1,78 @@
+{
+  "mediaInformation": {
+    "filename": "/storage/emulated/0/Movies/MyMovie.mp4",
+    "format": "mov,mp4,m4a,3gp,3g2,mj2",
+    "formatLong": "QuickTime / MOV",
+    "tags": {
+      "major_brand": "mp42",
+      "minor_version": "512",
+      "compatible_brands": "isomiso2avc1mp41",
+      "encoder": "Lavf58.29.100"
+    },
+    "duration": "142.345000",
+    "startTime": "0.000000",
+    "bitrate": "2499874",
+    "size": "44498345",
+    "streams": [
+      {
+        "index": 0,
+        "codec": "h264",
+        "codecLong": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "codecType": "video",
+        "width": 1920,
+        "height": 1080,
+        "sampleAspectRatio": "1:1",
+        "displayAspectRatio": "16:9",
+        "pixelFormat": "yuv420p",
+        "frameRate": "23.976",
+        "averageFrameRate": "24000/1001",
+        "bitrate": "1998543",
+        "tags": {
+          "language": "und",
+          "handler_name": "VideoHandler"
+        }
+      },
+      {
+        "index": 1,
+        "codec": "aac",
+        "codecLong": "AAC (Advanced Audio Coding)",
+        "codecType": "audio",
+        "sampleFormat": "fltp",
+        "sampleRate": "48000",
+        "channelLayout": "5.1",
+        "channels": 6,
+        "bitrate": "317000",
+        "tags": {
+          "language": "eng",
+          "handler_name": "SoundHandler"
+        }
+      },
+      {
+        "index": 2,
+        "codec": "ac3",
+        "codecLong": "ATSC A/52A (AC-3)",
+        "codecType": "audio",
+        "sampleFormat": "fltp",
+        "sampleRate": "44100",
+        "channelLayout": "stereo",
+        "channels": 2,
+        "bitrate": "192000",
+        "tags": {
+          "language": "hin",
+          "title": "Commentary",
+          "handler_name": "SoundHandler"
+        }
+      },
+      {
+        "index": 3,
+        "codec": "subrip",
+        "codecLong": "SubRip subtitle",
+        "codecType": "subtitle",
+        "tags": {
+          "language": "eng",
+          "handler_name": "SubtitleHandler"
+        }
+      }
+    ]
+  }
+}
