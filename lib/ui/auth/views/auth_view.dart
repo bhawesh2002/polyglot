@@ -10,6 +10,10 @@ class AuthView extends StatefulWidget {
 class _AuthViewState extends State<AuthView> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: const Center(
+        child: Text("Auth View"),
+      ),
+    );
   }
 }
