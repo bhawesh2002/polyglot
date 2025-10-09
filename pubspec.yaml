@@ -1,19 +1,30 @@
 name: polyglot
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: ^3.8.1
+  sdk: ">=3.0.0 <=3.32.5"
+  flutter: ">=3.0.0"
 
 dependencies:
+  ffmpeg_kit_flutter_new_full: ^1.2.0
   flutter:
     sdk: flutter
+  flutter_riverpod: ^3.0.2
+  freezed_annotation: ^3.1.0
+  riverpod_annotation: ^3.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  riverpod: ^3.0.2
+  build_runner: ^2.4.0
+  freezed: ^3.0.0-0.0.dev
+  custom_lint: ^0.8.0
+  freezed_lint: ^0.0.12
+  riverpod_generator: ^3.0.2
 
 flutter:
   uses-material-design: true
