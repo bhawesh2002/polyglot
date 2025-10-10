@@ -52,7 +52,7 @@ AudioStream _$AudioStreamFromJson(Map<String, dynamic> json) => AudioStream(
   bitrate: (json['bitrate'] as num?)?.toDouble(),
   tags: json['tags'] as Map<String, dynamic>?,
   sampleFormat: json['sampleFormat'] as String?,
-  sampleRate: (json['sampleRate'] as num?)?.toDouble(),
+  sampleRate: json['sampleRate'] as String?,
   channelLayout: json['channelLayout'] as String?,
   channels: (json['channels'] as num?)?.toInt(),
   $type: json['runtimeType'] as String?,

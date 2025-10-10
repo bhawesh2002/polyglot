@@ -31,7 +31,7 @@ abstract class MediaStream with _$MediaStream {
     double? bitrate,
     Map<String, dynamic>? tags,
     String? sampleFormat,
-    double? sampleRate,
+    String? sampleRate,
     String? channelLayout,
     int? channels,
   }) = AudioStream;
