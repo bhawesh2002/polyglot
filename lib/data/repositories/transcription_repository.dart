@@ -1,4 +1,7 @@
 import 'package:logging/logging.dart';
+import 'package:polyglot/data/models/transcription.dart';
+import 'package:polyglot/data/models/transcription_source.dart';
+import 'package:polyglot/data/models/translation.dart';
 import 'package:polyglot/data/services/transcription_service.dart';
 import 'package:polyglot/data/services/translation_service.dart';
 
@@ -28,5 +31,45 @@ class TranscriptionRepository {
         stack,
       );
     }
+  }
+
+  Future<Transcription?> transcribe(TranscriptionSource source) async {
+    try {} catch (e, stack) {
+      _logger.severe("transcribe(): Error while transcribing audio", e, stack);
+    }
+    return null;
+  }
+
+  Future<Translation?> translate(TranscriptionSource source) async {
+    try {} catch (e, stack) {
+      _logger.severe("translate(): Error while translating audio", e, stack);
+    }
+    return null;
+  }
+
+  Future<List<Transcription>> listTranscriptions() async {
+    try {
+      final transctiptions = <Transcription>[];
+      return transctiptions;
+    } catch (e, stack) {
+      _logger.severe(
+        "listTranscriptions(): Error while listing transcriptions",
+        e,
+        stack,
+      );
+      rethrow;
+    }
+  }
+
+  Future<Transcription?> getTranscription(int id) async {
+    try {} catch (e, stack) {
+      _logger.severe(
+        "getTranscription(): Error while listing transcriptions",
+        e,
+        stack,
+      );
+      rethrow;
+    }
+    return null;
   }
 }
