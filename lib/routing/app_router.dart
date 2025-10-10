@@ -8,13 +8,12 @@ import 'package:polyglot/ui/splash/views/splash_view.dart';
 
 final appRouterProvider = Provider((ref) {
   final router = GoRouter(
-    initialLocation: "/",
+    initialLocation: AppRoutes.home,
     routes: [
       GoRoute(
         name: AppRoutes.splash,
         path: "/",
         redirect: (context, state) async {
-          await ref.read(storageRepositoryProvier).initialize();
           return null;
         },
         builder: (context, state) {
@@ -31,6 +30,10 @@ final appRouterProvider = Provider((ref) {
       GoRoute(
         name: AppRoutes.home,
         path: AppRoutes.home,
+        redirect: (context, state) async {
+          await ref.read(storageRepositoryProvier).initialize();
+          return null;
+        },
         builder: (context, state) {
           return HomeView();
         },
