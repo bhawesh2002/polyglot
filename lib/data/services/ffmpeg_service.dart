@@ -12,7 +12,10 @@ class FfmpegService {
       return info.getMediaInformation();
     } catch (e, stack) {
       _logger.severe(
-          "getVideoMetadata(): Error while getting video metadata", e, stack);
+        "getVideoMetadata(): Error while getting video metadata",
+        e,
+        stack,
+      );
     }
     return null;
   }
@@ -24,7 +27,25 @@ class FfmpegService {
       return codecs;
     } catch (e, stack) {
       _logger.severe(
-          "getVideoMetadata(): Error while getting audio codec", e, stack);
+        "getVideoMetadata(): Error while getting audio codec",
+        e,
+        stack,
+      );
+    }
+    return null;
+  }
+
+  List<String?>? getStreamCodecTypes(MediaInformation info) {
+    try {
+      final streams = info.getStreams();
+      final codecs = streams.map((stream) => stream.getType()).toList();
+      return codecs;
+    } catch (e, stack) {
+      _logger.severe(
+        "getVideoMetadata(): Error while getting audio codec",
+        e,
+        stack,
+      );
     }
     return null;
   }
@@ -48,8 +69,11 @@ class FfmpegService {
     return outputExtension;
   }
 
-  Future<bool> extractAudioFromVideoToWav(String pathToVideo, String outputPath,
-      {int? streamIndex = 0}) async {
+  Future<bool> extractAudioFromVideoToWav(
+    String pathToVideo,
+    String outputPath, {
+    int? streamIndex = 0,
+  }) async {
     try {
       final String command =
           'ffmpeg -i $pathToVideo -map 0:a:$streamIndex -vn -c:a pcm_s16le -ar 16000 -ac 1 $outputPath.wav';
@@ -58,13 +82,20 @@ class FfmpegService {
       return returnCode?.isValueSuccess() ?? false;
     } catch (e, stack) {
       _logger.severe(
-          "extractAudioFromVideo(): Error while extracting audio", e, stack);
+        "extractAudioFromVideo(): Error while extracting audio",
+        e,
+        stack,
+      );
     }
     return false;
   }
 
-  Future<bool> extractAudioFromVideo(String pathToVideo, String outputPath,
-      {int? streamIndex = 0, String? outputFormat = "mka"}) async {
+  Future<bool> extractAudioFromVideo(
+    String pathToVideo,
+    String outputPath, {
+    int? streamIndex = 0,
+    String? outputFormat = "mka",
+  }) async {
     try {
       final String command =
           'ffmpeg -i $pathToVideo -map 0:a:$streamIndex -vn -c:a copy $outputPath.$outputFormat';
@@ -73,7 +104,10 @@ class FfmpegService {
       return returnCode?.isValueSuccess() ?? false;
     } catch (e, stack) {
       _logger.severe(
-          "extractAudioFromVideo(): Error while extracting audio", e, stack);
+        "extractAudioFromVideo(): Error while extracting audio",
+        e,
+        stack,
+      );
     }
     return false;
   }
