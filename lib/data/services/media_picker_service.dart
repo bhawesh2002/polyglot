@@ -82,4 +82,16 @@ class MediaPickerService {
       rethrow;
     }
   }
+
+  Future<String?> pickAFolder() async {
+    try {
+      final path = await FilePicker.platform.getDirectoryPath(
+        dialogTitle: "Select folder to store files in",
+      );
+      return path;
+    } catch (e, stack) {
+      _logger.severe("saveFile(): Error while saving file", e, stack);
+      rethrow;
+    }
+  }
 }
