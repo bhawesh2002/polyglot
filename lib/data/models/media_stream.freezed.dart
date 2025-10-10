@@ -38,7 +38,7 @@ MediaStream _$MediaStreamFromJson(
 /// @nodoc
 mixin _$MediaStream {
 
- int get index; String get codec; String get codecLong; String get codecType; Map<String, dynamic> get metadata; String? get bitrate; Map<String, dynamic>? get tags;
+ int get index; String get codec; String get codecLong; String get codecType; Map<String, dynamic> get metadata; double? get bitrate; Map<String, dynamic>? get tags;
 /// Create a copy of MediaStream
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -71,7 +71,7 @@ abstract mixin class $MediaStreamCopyWith<$Res>  {
   factory $MediaStreamCopyWith(MediaStream value, $Res Function(MediaStream) _then) = _$MediaStreamCopyWithImpl;
 @useResult
 $Res call({
- int index, String codec, String codecLong, String codecType, Map<String, dynamic> metadata, String? bitrate, Map<String, dynamic>? tags
+ int index, String codec, String codecLong, String codecType, Map<String, dynamic> metadata, double? bitrate, Map<String, dynamic>? tags
 });
 
 
@@ -96,7 +96,7 @@ as String,codecLong: null == codecLong ? _self.codecLong : codecLong // ignore: 
 as String,codecType: null == codecType ? _self.codecType : codecType // ignore: cast_nullable_to_non_nullable
 as String,metadata: null == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,bitrate: freezed == bitrate ? _self.bitrate : bitrate // ignore: cast_nullable_to_non_nullable
-as String?,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
+as double?,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,
   ));
 }
@@ -185,7 +185,7 @@ return audio(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int index,  String codec,  String codecLong,  String codecType,  Map<String, dynamic> metadata,  String? bitrate,  Map<String, dynamic>? tags,  String? width,  String? height,  String? sampleAspectRatio,  String? displayAspectRatio,  String? pixelFormat,  String? frameRate,  String? averageFrameRate)?  video,TResult Function( int index,  String codec,  String codecLong,  String codecType,  Map<String, dynamic> metadata,  String? bitrate,  Map<String, dynamic>? tags,  String? sampleFormat,  String? sampleRate,  String? channelLayout,  String? channels)?  audio,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int index,  String codec,  String codecLong,  String codecType,  Map<String, dynamic> metadata,  double? bitrate,  Map<String, dynamic>? tags,  int? width,  int? height,  String? sampleAspectRatio,  String? displayAspectRatio,  String? pixelFormat,  String? frameRate,  String? averageFrameRate)?  video,TResult Function( int index,  String codec,  String codecLong,  String codecType,  Map<String, dynamic> metadata,  double? bitrate,  Map<String, dynamic>? tags,  String? sampleFormat,  double? sampleRate,  String? channelLayout,  int? channels)?  audio,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case VideoStream() when video != null:
 return video(_that.index,_that.codec,_that.codecLong,_that.codecType,_that.metadata,_that.bitrate,_that.tags,_that.width,_that.height,_that.sampleAspectRatio,_that.displayAspectRatio,_that.pixelFormat,_that.frameRate,_that.averageFrameRate);case AudioStream() when audio != null:
@@ -207,7 +207,7 @@ return audio(_that.index,_that.codec,_that.codecLong,_that.codecType,_that.metad
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int index,  String codec,  String codecLong,  String codecType,  Map<String, dynamic> metadata,  String? bitrate,  Map<String, dynamic>? tags,  String? width,  String? height,  String? sampleAspectRatio,  String? displayAspectRatio,  String? pixelFormat,  String? frameRate,  String? averageFrameRate)  video,required TResult Function( int index,  String codec,  String codecLong,  String codecType,  Map<String, dynamic> metadata,  String? bitrate,  Map<String, dynamic>? tags,  String? sampleFormat,  String? sampleRate,  String? channelLayout,  String? channels)  audio,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int index,  String codec,  String codecLong,  String codecType,  Map<String, dynamic> metadata,  double? bitrate,  Map<String, dynamic>? tags,  int? width,  int? height,  String? sampleAspectRatio,  String? displayAspectRatio,  String? pixelFormat,  String? frameRate,  String? averageFrameRate)  video,required TResult Function( int index,  String codec,  String codecLong,  String codecType,  Map<String, dynamic> metadata,  double? bitrate,  Map<String, dynamic>? tags,  String? sampleFormat,  double? sampleRate,  String? channelLayout,  int? channels)  audio,}) {final _that = this;
 switch (_that) {
 case VideoStream():
 return video(_that.index,_that.codec,_that.codecLong,_that.codecType,_that.metadata,_that.bitrate,_that.tags,_that.width,_that.height,_that.sampleAspectRatio,_that.displayAspectRatio,_that.pixelFormat,_that.frameRate,_that.averageFrameRate);case AudioStream():
@@ -228,7 +228,7 @@ return audio(_that.index,_that.codec,_that.codecLong,_that.codecType,_that.metad
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int index,  String codec,  String codecLong,  String codecType,  Map<String, dynamic> metadata,  String? bitrate,  Map<String, dynamic>? tags,  String? width,  String? height,  String? sampleAspectRatio,  String? displayAspectRatio,  String? pixelFormat,  String? frameRate,  String? averageFrameRate)?  video,TResult? Function( int index,  String codec,  String codecLong,  String codecType,  Map<String, dynamic> metadata,  String? bitrate,  Map<String, dynamic>? tags,  String? sampleFormat,  String? sampleRate,  String? channelLayout,  String? channels)?  audio,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int index,  String codec,  String codecLong,  String codecType,  Map<String, dynamic> metadata,  double? bitrate,  Map<String, dynamic>? tags,  int? width,  int? height,  String? sampleAspectRatio,  String? displayAspectRatio,  String? pixelFormat,  String? frameRate,  String? averageFrameRate)?  video,TResult? Function( int index,  String codec,  String codecLong,  String codecType,  Map<String, dynamic> metadata,  double? bitrate,  Map<String, dynamic>? tags,  String? sampleFormat,  double? sampleRate,  String? channelLayout,  int? channels)?  audio,}) {final _that = this;
 switch (_that) {
 case VideoStream() when video != null:
 return video(_that.index,_that.codec,_that.codecLong,_that.codecType,_that.metadata,_that.bitrate,_that.tags,_that.width,_that.height,_that.sampleAspectRatio,_that.displayAspectRatio,_that.pixelFormat,_that.frameRate,_that.averageFrameRate);case AudioStream() when audio != null:
@@ -258,7 +258,7 @@ class VideoStream implements MediaStream {
   return EqualUnmodifiableMapView(_metadata);
 }
 
-@override final  String? bitrate;
+@override final  double? bitrate;
  final  Map<String, dynamic>? _tags;
 @override Map<String, dynamic>? get tags {
   final value = _tags;
@@ -268,8 +268,8 @@ class VideoStream implements MediaStream {
   return EqualUnmodifiableMapView(value);
 }
 
- final  String? width;
- final  String? height;
+ final  int? width;
+ final  int? height;
  final  String? sampleAspectRatio;
  final  String? displayAspectRatio;
  final  String? pixelFormat;
@@ -313,7 +313,7 @@ abstract mixin class $VideoStreamCopyWith<$Res> implements $MediaStreamCopyWith<
   factory $VideoStreamCopyWith(VideoStream value, $Res Function(VideoStream) _then) = _$VideoStreamCopyWithImpl;
 @override @useResult
 $Res call({
- int index, String codec, String codecLong, String codecType, Map<String, dynamic> metadata, String? bitrate, Map<String, dynamic>? tags, String? width, String? height, String? sampleAspectRatio, String? displayAspectRatio, String? pixelFormat, String? frameRate, String? averageFrameRate
+ int index, String codec, String codecLong, String codecType, Map<String, dynamic> metadata, double? bitrate, Map<String, dynamic>? tags, int? width, int? height, String? sampleAspectRatio, String? displayAspectRatio, String? pixelFormat, String? frameRate, String? averageFrameRate
 });
 
 
@@ -338,10 +338,10 @@ as String,codecLong: null == codecLong ? _self.codecLong : codecLong // ignore: 
 as String,codecType: null == codecType ? _self.codecType : codecType // ignore: cast_nullable_to_non_nullable
 as String,metadata: null == metadata ? _self._metadata : metadata // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,bitrate: freezed == bitrate ? _self.bitrate : bitrate // ignore: cast_nullable_to_non_nullable
-as String?,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
+as double?,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,width: freezed == width ? _self.width : width // ignore: cast_nullable_to_non_nullable
-as String?,height: freezed == height ? _self.height : height // ignore: cast_nullable_to_non_nullable
-as String?,sampleAspectRatio: freezed == sampleAspectRatio ? _self.sampleAspectRatio : sampleAspectRatio // ignore: cast_nullable_to_non_nullable
+as int?,height: freezed == height ? _self.height : height // ignore: cast_nullable_to_non_nullable
+as int?,sampleAspectRatio: freezed == sampleAspectRatio ? _self.sampleAspectRatio : sampleAspectRatio // ignore: cast_nullable_to_non_nullable
 as String?,displayAspectRatio: freezed == displayAspectRatio ? _self.displayAspectRatio : displayAspectRatio // ignore: cast_nullable_to_non_nullable
 as String?,pixelFormat: freezed == pixelFormat ? _self.pixelFormat : pixelFormat // ignore: cast_nullable_to_non_nullable
 as String?,frameRate: freezed == frameRate ? _self.frameRate : frameRate // ignore: cast_nullable_to_non_nullable
@@ -371,7 +371,7 @@ class AudioStream implements MediaStream {
   return EqualUnmodifiableMapView(_metadata);
 }
 
-@override final  String? bitrate;
+@override final  double? bitrate;
  final  Map<String, dynamic>? _tags;
 @override Map<String, dynamic>? get tags {
   final value = _tags;
@@ -382,9 +382,9 @@ class AudioStream implements MediaStream {
 }
 
  final  String? sampleFormat;
- final  String? sampleRate;
+ final  double? sampleRate;
  final  String? channelLayout;
- final  String? channels;
+ final  int? channels;
 
 @JsonKey(name: 'runtimeType')
 final String $type;
@@ -423,7 +423,7 @@ abstract mixin class $AudioStreamCopyWith<$Res> implements $MediaStreamCopyWith<
   factory $AudioStreamCopyWith(AudioStream value, $Res Function(AudioStream) _then) = _$AudioStreamCopyWithImpl;
 @override @useResult
 $Res call({
- int index, String codec, String codecLong, String codecType, Map<String, dynamic> metadata, String? bitrate, Map<String, dynamic>? tags, String? sampleFormat, String? sampleRate, String? channelLayout, String? channels
+ int index, String codec, String codecLong, String codecType, Map<String, dynamic> metadata, double? bitrate, Map<String, dynamic>? tags, String? sampleFormat, double? sampleRate, String? channelLayout, int? channels
 });
 
 
@@ -448,12 +448,12 @@ as String,codecLong: null == codecLong ? _self.codecLong : codecLong // ignore: 
 as String,codecType: null == codecType ? _self.codecType : codecType // ignore: cast_nullable_to_non_nullable
 as String,metadata: null == metadata ? _self._metadata : metadata // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,bitrate: freezed == bitrate ? _self.bitrate : bitrate // ignore: cast_nullable_to_non_nullable
-as String?,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
+as double?,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,sampleFormat: freezed == sampleFormat ? _self.sampleFormat : sampleFormat // ignore: cast_nullable_to_non_nullable
 as String?,sampleRate: freezed == sampleRate ? _self.sampleRate : sampleRate // ignore: cast_nullable_to_non_nullable
-as String?,channelLayout: freezed == channelLayout ? _self.channelLayout : channelLayout // ignore: cast_nullable_to_non_nullable
+as double?,channelLayout: freezed == channelLayout ? _self.channelLayout : channelLayout // ignore: cast_nullable_to_non_nullable
 as String?,channels: freezed == channels ? _self.channels : channels // ignore: cast_nullable_to_non_nullable
-as String?,
+as int?,
   ));
 }
 
