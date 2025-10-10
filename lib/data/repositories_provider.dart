@@ -9,7 +9,6 @@ final storageRepositoryProvier = Provider(
 
 final transcriptionService = Provider(
   (ref) => TranscriptionRepository(
-    ffmpegService: ref.watch(ffmpegServiceProvider),
     transcriptionService: ref.watch(transcriptionServiceProvider),
     translationService: ref.watch(translationServiceProvider),
   ),
