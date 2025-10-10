@@ -27,6 +27,7 @@ class _MainAppState extends ConsumerState<MainApp> {
   Widget build(BuildContext context) {
     final router = ref.watch(appRouterProvider);
     return MaterialApp.router(
+      theme: ThemeData(fontFamily: 'Typold'),
       debugShowCheckedModeBanner: false,
       routerConfig: router,
     );
