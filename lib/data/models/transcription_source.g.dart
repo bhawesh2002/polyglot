@@ -23,8 +23,8 @@ _TranscriptionSource _$TranscriptionSourceFromJson(Map<String, dynamic> json) =>
               ?.map((e) => MediaStream.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      bitrate: json['bitrate'] as String?,
-      size: json['size'] as String?,
+      bitrate: (json['bitrate'] as num?)?.toDouble(),
+      size: (json['size'] as num?)?.toInt(),
       metadata: json['metadata'] as Map<String, dynamic>,
     );
 

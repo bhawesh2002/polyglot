@@ -28,8 +28,8 @@ abstract class TranscriptionSource with _$TranscriptionSource {
     String? formatLong,
     Map<String, dynamic>? tags,
     @Default([]) List<MediaStream> streams,
-    String? bitrate,
-    String? size,
+    double? bitrate,
+    int? size,
     required Map<String, dynamic> metadata,
   }) = _TranscriptionSource;
   factory TranscriptionSource.fromJson(Map<String, dynamic> json) =>

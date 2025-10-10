@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TranscriptionSource {
 
- TranscriptionSourceType get type; String get name; String get path;@JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON) Duration get duration; String get format;@JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON) Duration get startTime; String? get formatLong; Map<String, dynamic>? get tags; List<MediaStream> get streams; String? get bitrate; String? get size; Map<String, dynamic> get metadata;
+ TranscriptionSourceType get type; String get name; String get path;@JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON) Duration get duration; String get format;@JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON) Duration get startTime; String? get formatLong; Map<String, dynamic>? get tags; List<MediaStream> get streams; double? get bitrate; int? get size; Map<String, dynamic> get metadata;
 /// Create a copy of TranscriptionSource
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $TranscriptionSourceCopyWith<$Res>  {
   factory $TranscriptionSourceCopyWith(TranscriptionSource value, $Res Function(TranscriptionSource) _then) = _$TranscriptionSourceCopyWithImpl;
 @useResult
 $Res call({
- TranscriptionSourceType type, String name, String path,@JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON) Duration duration, String format,@JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON) Duration startTime, String? formatLong, Map<String, dynamic>? tags, List<MediaStream> streams, String? bitrate, String? size, Map<String, dynamic> metadata
+ TranscriptionSourceType type, String name, String path,@JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON) Duration duration, String format,@JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON) Duration startTime, String? formatLong, Map<String, dynamic>? tags, List<MediaStream> streams, double? bitrate, int? size, Map<String, dynamic> metadata
 });
 
 
@@ -77,8 +77,8 @@ as Duration,formatLong: freezed == formatLong ? _self.formatLong : formatLong //
 as String?,tags: freezed == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,streams: null == streams ? _self.streams : streams // ignore: cast_nullable_to_non_nullable
 as List<MediaStream>,bitrate: freezed == bitrate ? _self.bitrate : bitrate // ignore: cast_nullable_to_non_nullable
-as String?,size: freezed == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
-as String?,metadata: null == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
+as double?,size: freezed == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
+as int?,metadata: null == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,
   ));
 }
@@ -164,7 +164,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TranscriptionSourceType type,  String name,  String path, @JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON)  Duration duration,  String format, @JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON)  Duration startTime,  String? formatLong,  Map<String, dynamic>? tags,  List<MediaStream> streams,  String? bitrate,  String? size,  Map<String, dynamic> metadata)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TranscriptionSourceType type,  String name,  String path, @JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON)  Duration duration,  String format, @JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON)  Duration startTime,  String? formatLong,  Map<String, dynamic>? tags,  List<MediaStream> streams,  double? bitrate,  int? size,  Map<String, dynamic> metadata)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TranscriptionSource() when $default != null:
 return $default(_that.type,_that.name,_that.path,_that.duration,_that.format,_that.startTime,_that.formatLong,_that.tags,_that.streams,_that.bitrate,_that.size,_that.metadata);case _:
@@ -185,7 +185,7 @@ return $default(_that.type,_that.name,_that.path,_that.duration,_that.format,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TranscriptionSourceType type,  String name,  String path, @JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON)  Duration duration,  String format, @JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON)  Duration startTime,  String? formatLong,  Map<String, dynamic>? tags,  List<MediaStream> streams,  String? bitrate,  String? size,  Map<String, dynamic> metadata)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TranscriptionSourceType type,  String name,  String path, @JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON)  Duration duration,  String format, @JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON)  Duration startTime,  String? formatLong,  Map<String, dynamic>? tags,  List<MediaStream> streams,  double? bitrate,  int? size,  Map<String, dynamic> metadata)  $default,) {final _that = this;
 switch (_that) {
 case _TranscriptionSource():
 return $default(_that.type,_that.name,_that.path,_that.duration,_that.format,_that.startTime,_that.formatLong,_that.tags,_that.streams,_that.bitrate,_that.size,_that.metadata);case _:
@@ -205,7 +205,7 @@ return $default(_that.type,_that.name,_that.path,_that.duration,_that.format,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TranscriptionSourceType type,  String name,  String path, @JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON)  Duration duration,  String format, @JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON)  Duration startTime,  String? formatLong,  Map<String, dynamic>? tags,  List<MediaStream> streams,  String? bitrate,  String? size,  Map<String, dynamic> metadata)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TranscriptionSourceType type,  String name,  String path, @JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON)  Duration duration,  String format, @JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON)  Duration startTime,  String? formatLong,  Map<String, dynamic>? tags,  List<MediaStream> streams,  double? bitrate,  int? size,  Map<String, dynamic> metadata)?  $default,) {final _that = this;
 switch (_that) {
 case _TranscriptionSource() when $default != null:
 return $default(_that.type,_that.name,_that.path,_that.duration,_that.format,_that.startTime,_that.formatLong,_that.tags,_that.streams,_that.bitrate,_that.size,_that.metadata);case _:
@@ -246,8 +246,8 @@ class _TranscriptionSource implements TranscriptionSource {
   return EqualUnmodifiableListView(_streams);
 }
 
-@override final  String? bitrate;
-@override final  String? size;
+@override final  double? bitrate;
+@override final  int? size;
  final  Map<String, dynamic> _metadata;
 @override Map<String, dynamic> get metadata {
   if (_metadata is EqualUnmodifiableMapView) return _metadata;
@@ -289,7 +289,7 @@ abstract mixin class _$TranscriptionSourceCopyWith<$Res> implements $Transcripti
   factory _$TranscriptionSourceCopyWith(_TranscriptionSource value, $Res Function(_TranscriptionSource) _then) = __$TranscriptionSourceCopyWithImpl;
 @override @useResult
 $Res call({
- TranscriptionSourceType type, String name, String path,@JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON) Duration duration, String format,@JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON) Duration startTime, String? formatLong, Map<String, dynamic>? tags, List<MediaStream> streams, String? bitrate, String? size, Map<String, dynamic> metadata
+ TranscriptionSourceType type, String name, String path,@JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON) Duration duration, String format,@JsonKey(fromJson: DurationConverter.fromJSON, toJson: DurationConverter.toJSON) Duration startTime, String? formatLong, Map<String, dynamic>? tags, List<MediaStream> streams, double? bitrate, int? size, Map<String, dynamic> metadata
 });
 
 
@@ -318,8 +318,8 @@ as Duration,formatLong: freezed == formatLong ? _self.formatLong : formatLong //
 as String?,tags: freezed == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,streams: null == streams ? _self._streams : streams // ignore: cast_nullable_to_non_nullable
 as List<MediaStream>,bitrate: freezed == bitrate ? _self.bitrate : bitrate // ignore: cast_nullable_to_non_nullable
-as String?,size: freezed == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
-as String?,metadata: null == metadata ? _self._metadata : metadata // ignore: cast_nullable_to_non_nullable
+as double?,size: freezed == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
+as int?,metadata: null == metadata ? _self._metadata : metadata // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,
   ));
 }
