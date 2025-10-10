@@ -30,7 +30,7 @@ class MediaPickerService {
         withReadStream: true,
         type: FileType.audio,
         onFileLoading: (status) {},
-        dialogTitle: "Pick a file",
+        dialogTitle: "Pick audio file",
       );
       if (result != null) {
         final file = result.files.first;
@@ -53,7 +53,7 @@ class MediaPickerService {
         withReadStream: true,
         type: FileType.video,
         onFileLoading: (status) {},
-        dialogTitle: "Pick a file",
+        dialogTitle: "Pick video file",
       );
       if (result != null) {
         final file = result.files.first;
