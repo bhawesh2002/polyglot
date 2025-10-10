@@ -7,7 +7,8 @@ class DurationConverter extends JsonConverter<Duration, Map<String, dynamic>> {
     final parts = json.split(':');
     if (parts.length != 3) {
       throw const FormatException(
-          "Invalid time format, expected 'hh:mm:ss.microseconds'");
+        "Invalid time format, expected 'hh:mm:ss.microseconds'",
+      );
     }
     final secondsParts = parts[2].split('.');
     final hours = int.tryParse(parts[0]) ?? 0;
@@ -22,6 +23,14 @@ class DurationConverter extends JsonConverter<Duration, Map<String, dynamic>> {
       seconds: seconds,
       microseconds: microseconds,
     );
+  }
+
+  static Duration fromFFmpegString(String ffmpegDuration) {
+    final double seconds = double.tryParse(ffmpegDuration) ?? 0.0;
+
+    final int microseconds = (seconds * 1000000).round();
+
+    return Duration(microseconds: microseconds);
   }
 
   static String toJSON(Duration object) => object.toString();
