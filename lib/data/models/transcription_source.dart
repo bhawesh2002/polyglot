@@ -15,13 +15,13 @@ abstract class TranscriptionSource with _$TranscriptionSource {
     required String name,
     required String path,
     @JsonKey(
-      fromJson: DurationConverter.fromJSON,
+      fromJson: DurationConverter.fromFFmpegString,
       toJson: DurationConverter.toJSON,
     )
     required Duration duration,
     required String format,
     @JsonKey(
-      fromJson: DurationConverter.fromJSON,
+      fromJson: DurationConverter.fromFFmpegString,
       toJson: DurationConverter.toJSON,
     )
     @Default(Duration.zero)
@@ -118,9 +118,11 @@ abstract class TranscriptionSource with _$TranscriptionSource {
           .toList(growable: false);
     }
 
-    final duration = DurationConverter.fromJSON(info.getDuration() ?? '0');
+    final duration = DurationConverter.fromFFmpegString(
+      info.getDuration() ?? '0',
+    );
     final startTime = info.getStartTime() != null
-        ? DurationConverter.fromJSON(info.getStartTime()!)
+        ? DurationConverter.fromFFmpegString(info.getStartTime()!)
         : Duration.zero;
 
     final tags = mapToStringDynamic(info.getTags());

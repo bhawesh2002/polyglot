@@ -11,11 +11,11 @@ _TranscriptionSource _$TranscriptionSourceFromJson(Map<String, dynamic> json) =>
       type: $enumDecode(_$TranscriptionSourceTypeEnumMap, json['type']),
       name: json['name'] as String,
       path: json['path'] as String,
-      duration: DurationConverter.fromJSON(json['duration'] as String),
+      duration: DurationConverter.fromFFmpegString(json['duration'] as String),
       format: json['format'] as String,
       startTime: json['startTime'] == null
           ? Duration.zero
-          : DurationConverter.fromJSON(json['startTime'] as String),
+          : DurationConverter.fromFFmpegString(json['startTime'] as String),
       formatLong: json['formatLong'] as String?,
       tags: json['tags'] as Map<String, dynamic>?,
       streams:
