@@ -5,7 +5,6 @@ import 'package:polyglot/data/services/ffmpeg_service.dart';
 import 'package:polyglot/data/services/media_picker_service.dart';
 import 'package:polyglot/data/services/storage_service.dart';
 import 'package:polyglot/utils/exceptions.dart';
-import 'package:polyglot/utils/extension.dart';
 
 class AudioExtractionRepository {
   final FfmpegService _ffmpegService;
@@ -43,10 +42,10 @@ class AudioExtractionRepository {
             StorageService.audioDirPath,
           );
           if (result) {
-            source = info.toTranscriptionSource();
+            source = TranscriptionSource.fromMediaInformation(info);
           }
         } else {
-          source = info.toTranscriptionSource();
+          source = TranscriptionSource.fromMediaInformation(info);
         }
       }
       return source;
