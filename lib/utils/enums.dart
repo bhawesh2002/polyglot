@@ -1,0 +1,1 @@
+enum TranscriptionSourceType { audio, video }
