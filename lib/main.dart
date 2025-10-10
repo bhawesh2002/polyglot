@@ -3,12 +3,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_ce_flutter/adapters.dart';
 import 'package:logging/logging.dart';
 import 'package:polyglot/routing/app_router.dart';
+import 'dart:developer' as developer;
 
 Future<void> main() async {
   Logger.root.onRecord.listen((record) {
-    debugPrint(
-      "log:= ${record.loggerName} : ${record.level} : ${record.time} <=> Message: ${record.message}${record.error != null ? "\nError: ${record.error}" : ""}${record.stackTrace != null ? "\nStackTrace: ${record.stackTrace}" : ""}",
-    );
+    if (record.level == Level.FINE ||
+        record.level == Level.FINEST ||
+        record.level == Level.FINER) {
+      developer.log(
+        "log:= ${record.loggerName} : ${record.level} : ${record.time} <=> Message: ${record.message}${record.error != null ? "\nError: ${record.error}" : ""}${record.stackTrace != null ? "\nStackTrace: ${record.stackTrace}" : ""}",
+      );
+    } else {
+      debugPrint(
+        "log:= ${record.loggerName} : ${record.level} : ${record.time} <=> Message: ${record.message}${record.error != null ? "\nError: ${record.error}" : ""}${record.stackTrace != null ? "\nStackTrace: ${record.stackTrace}" : ""}",
+      );
+    }
   });
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
