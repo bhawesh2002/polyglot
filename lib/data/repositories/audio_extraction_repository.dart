@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:logging/logging.dart';
 import 'package:polyglot/data/models/transcription_source.dart';
 import 'package:polyglot/data/services/ffmpeg_service.dart';
@@ -18,13 +19,13 @@ class AudioExtractionRepository {
 
   final Logger _logger = Logger("AudioExtractionRepository");
 
-  Future<String> pickMedia({bool isAudio = false}) async {
+  Future<PlatformFile> pickMedia({bool isAudio = false}) async {
     try {
       final file = isAudio
           ? await _mediaPickerService.pickAudioFile()
           : await _mediaPickerService.pickVideoFile();
       if (file == null) throw MediaFileNotFound();
-      return file.path!;
+      return file;
     } catch (e, stack) {
       _logger.severe("extract(): Error while picking media", e, stack);
       rethrow;
