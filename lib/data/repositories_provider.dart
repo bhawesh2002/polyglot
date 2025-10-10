@@ -18,5 +18,6 @@ final transcriptionService = Provider(
 final audioExtractionRepository = Provider(
   (ref) => AudioExtractionRepository(
     ffmpegService: ref.watch(ffmpegServiceProvider),
+    mediaPickerService: ref.watch(mediaPickerServiceProvider)
   ),
 );
