@@ -1,12 +1,17 @@
 import 'dart:typed_data';
 
 import 'package:logging/logging.dart';
+import 'package:polyglot/data/services/media_picker_service.dart';
 import 'package:polyglot/data/services/storage_service.dart';
 
 class StorageRepository {
   final StorageService _storageService;
-  StorageRepository({required StorageService storageService})
-      : _storageService = storageService;
+  final MediaPickerService _mediaPickerService;
+  StorageRepository({
+    required StorageService storageService,
+    required MediaPickerService mediaPickerService,
+  }) : _storageService = storageService,
+       _mediaPickerService = mediaPickerService;
 
   final Logger _logger = Logger("StorageRepository");
 
@@ -19,14 +24,14 @@ class StorageRepository {
       await _storageService.getStorageLocation();
       await _storageService.createTranscriptionDir();
       await _storageService.createTranscriptionDir();
-      _logger.info("Storage Root: ${StorageService.rootStorageLoc}");
-      _logger.info("Audio Dir: ${StorageService.audioDirPath}");
-      _logger.info("Transcription dir: ${StorageService.transcriptionDirPath}");
-
+      await _storageService.creataAppDocDir();
       _initialized = true;
     } catch (e, stack) {
       _logger.severe(
-          "initialize(): Error while initializing storage repo", e, stack);
+        "initialize(): Error while initializing storage repo",
+        e,
+        stack,
+      );
     }
   }
 
@@ -38,5 +43,10 @@ class StorageRepository {
   Future<String> readTranscriptionFile(String fileName) async {
     final file = await StorageService.readTranscriptionFile(fileName);
     return file;
+  }
+
+  Future<String?> pickStorageLocation() async {
+    final path = await _mediaPickerService.pickAFolder();
+    return path;
   }
 }
