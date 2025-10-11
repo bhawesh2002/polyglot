@@ -36,6 +36,19 @@ class FfmpegService {
     return null;
   }
 
+  Map<String, dynamic> getMediaStreams(MediaInformation info) {
+    final Map<String, dynamic> streamsMap = {};
+    try {
+      final streams = info.getStreams();
+      final videoStream = streams.where((s) => s.getType() == 'video').toList();
+      final audioStream = streams.where((s) => s.getType() == 'audio').toList();
+      streamsMap.addAll({'video': videoStream, 'audio': audioStream});
+    } catch (e, stack) {
+      _logger.severe("getMediaStreams(): Error while getting audio", e, stack);
+    }
+    return streamsMap;
+  }
+
   List<String?>? getStreamCodecTypes(MediaInformation info) {
     try {
       final streams = info.getStreams();
