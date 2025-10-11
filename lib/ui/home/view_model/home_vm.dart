@@ -1,4 +1,6 @@
 import 'package:logging/logging.dart';
+import 'package:polyglot/data/models/media_stream.dart';
+import 'package:polyglot/data/models/transcription_source.dart';
 import 'package:polyglot/data/repositories/audio_extraction_repository.dart';
 import 'package:polyglot/data/repositories_provider.dart';
 import 'package:polyglot/ui/home/view_model/state/home_vm_state.dart';
@@ -45,11 +47,13 @@ class HomeVm extends _$HomeVm {
     }
   }
 
-  Future<void> beginAudioExtraction() async {
-    if (state.selectedFile == null) return;
+  List<AudioStream>? get audioStreams =>
+      state.transcriptionSource?.audioStreams;
+
+  Future<void> createTranscriptionSource() async {
     try {
       state = state.copyWith(processingFile: true);
-      final source = await _audioExtractionRepository.extract(
+      final source = await _audioExtractionRepository.createTranscriptionSource(
         state.selectedFile!.name,
         state.selectedFile!.path!,
       );
@@ -57,6 +61,27 @@ class HomeVm extends _$HomeVm {
         transcriptionSource: source,
         processingFile: false,
       );
+    } catch (e, stack) {
+      _handleError(
+        "createTranscriptionSource(): Unable to create TranscriptionSource",
+        e,
+        stack,
+      );
+    }
+  }
+
+  Future<void> beginAudioExtraction({int? streamIndex}) async {
+    if (state.transcriptionSource == null) return;
+    try {
+      state = state.copyWith(processingFile: false, extractingAudio: true);
+      final updated = await _audioExtractionRepository.extractAudio(
+        state.transcriptionSource!,
+        streamIndex: streamIndex,
+      );
+      // if (updated != null) {
+      state = state.copyWith(transcriptionSource: updated);
+      // }
+      state = state.copyWith(extractingAudio: false);
     } catch (e, stack) {
       state = state.copyWith(processingFile: false);
       _handleError("beginAudioExtraction(): Unable to pick video", e, stack);
