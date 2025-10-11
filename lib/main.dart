@@ -6,6 +6,7 @@ import 'package:polyglot/routing/app_router.dart';
 import 'dart:developer' as developer;
 
 Future<void> main() async {
+  Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((record) {
     if (record.level == Level.FINE ||
         record.level == Level.FINEST ||
