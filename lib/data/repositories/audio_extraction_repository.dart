@@ -1,5 +1,4 @@
 import 'package:ffmpeg_kit_flutter_new/media_information.dart';
-import 'package:ffmpeg_kit_flutter_new/stream_information.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:logging/logging.dart';
 import 'package:polyglot/data/models/transcription_source.dart';
@@ -83,19 +82,5 @@ class AudioExtractionRepository {
       );
     }
     return null;
-  }
-
-  List<StreamInformation> extractAvailableAudioStreams(MediaInformation info) {
-    try {
-      final streams = _ffmpegService.getMediaStreams(info);
-      if (streams.containsKey('audio')) return streams['audio'];
-    } catch (e, stack) {
-      _logger.severe(
-        "getAvailableAudioStreams(): Error while extracting audio streams",
-        e,
-        stack,
-      );
-    }
-    return [];
   }
 }
