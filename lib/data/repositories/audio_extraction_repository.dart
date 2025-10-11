@@ -33,16 +33,17 @@ class AudioExtractionRepository {
     }
   }
 
-  Future<TranscriptionSource?> extract(
+  Future<TranscriptionSource?> createTranscriptionSource(
     String assetName,
-    String assetPath,
-  ) async {
+    String assetPath, {
+    int? streamIndex,
+  }) async {
     try {
       final info = await _ffmpegService.getAssetInfo(assetPath);
       TranscriptionSource? source;
       if (info != null) {
         if (_ffmpegService.classifyMediaFile(assetPath, info) == 'video') {
-          source = await extractAudio(assetName, assetPath, info);
+          source = await _extractAudio(assetName, assetPath, info, streamIndex);
         } else {
           source = TranscriptionSource.fromMediaInformation(info);
         }
@@ -55,10 +56,11 @@ class AudioExtractionRepository {
     return null;
   }
 
-  Future<TranscriptionSource?> extractAudio(
+  Future<TranscriptionSource?> _extractAudio(
     String assetName,
     String assetPath,
     MediaInformation info,
+    int? streamIndex,
   ) async {
     final fileName = assetName.split(".");
     fileName.removeLast();
@@ -68,6 +70,7 @@ class AudioExtractionRepository {
     final result = await _ffmpegService.extractAudioFromVideoToWav(
       assetPath,
       opPath,
+      streamIndex: streamIndex,
     );
     if (result) {
       return TranscriptionSource.fromMediaInformation(info);
