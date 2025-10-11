@@ -156,9 +156,22 @@ class FfmpegService {
     String? outputFormat = "mka",
   }) async {
     try {
-      final String command =
-          'ffmpeg -i $pathToVideo -map 0:a:$streamIndex -vn -c:a copy $outputPath.$outputFormat';
-      final session = await FFmpegKit.execute(command);
+      final session = await FFmpegKit.executeWithArguments([
+        '-i',
+        pathToVideo,
+        '-map',
+        '0:a:$streamIndex',
+        '-vn',
+        '-c:a',
+        'pcm_s16le',
+        '-ar',
+        '16000',
+        '-ac',
+        '1',
+        '-f',
+        outputFormat!,
+        outputPath,
+      ]);
       final returnCode = await session.getReturnCode();
       return returnCode?.isValueSuccess() ?? false;
     } catch (e, stack) {
