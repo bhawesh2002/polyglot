@@ -31,15 +31,23 @@ class AudioExtractionRepository {
     }
   }
 
-  Future<TranscriptionSource?> extract(String assetPath) async {
+  Future<TranscriptionSource?> extract(
+    String assetName,
+    String assetPath,
+  ) async {
     try {
       final info = await _ffmpegService.getAssetInfo(assetPath);
       TranscriptionSource? source;
       if (info != null) {
-        if (info.getStreams().first.getType() == 'video') {
+        if (_ffmpegService.classifyMediaFile(assetPath, info) == 'video') {
+          final fileName = assetName.split(".");
+          fileName.removeLast();
+          fileName.join(".");
+          final String opPath =
+              "${StorageService.appDirLoc}/${fileName}_${DateTime.now().millisecondsSinceEpoch}";
           final result = await _ffmpegService.extractAudioFromVideoToWav(
             assetPath,
-            StorageService.audioDirPath,
+            opPath,
           );
           if (result) {
             source = TranscriptionSource.fromMediaInformation(info);
@@ -48,6 +56,7 @@ class AudioExtractionRepository {
           source = TranscriptionSource.fromMediaInformation(info);
         }
       }
+      _logger.info('TranscriptionSource : ${source?.type}');
       return source;
     } catch (e, stack) {
       _logger.severe("extract(): Error while extracting audio", e, stack);
