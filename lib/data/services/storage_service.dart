@@ -10,6 +10,7 @@ class StorageService {
   static String get audioDirPath => p.join(rootStorageLoc, "audio");
   static String get transcriptionDirPath =>
       p.join(rootStorageLoc, "transcriptions");
+  static late final String appDocDirLoc;
 
   bool _gotRootStorage = false;
   bool get gotRootStorage => _gotRootStorage;
@@ -40,13 +41,26 @@ class StorageService {
     }
   }
 
+  Future<void> creataAppDocDir() async {
+    final Directory appDir = await getApplicationDocumentsDirectory();
+    final String fullOutputPath = p.join(appDir.path, "audio");
+
+    final Directory parentDir = Directory(p.dirname(fullOutputPath));
+    if (!await parentDir.exists()) {
+      await parentDir.create(recursive: true);
+    }
+    appDocDirLoc = fullOutputPath;
+  }
+
   static Future<void> storeAudioFile(String fileName, List<int> bytes) async {
     final audioFile = File(p.join(audioDirPath, fileName));
     audioFile.writeAsBytes(bytes);
   }
 
   static Future<void> storeTranscriptionFile(
-      String fileName, String contents) async {
+    String fileName,
+    String contents,
+  ) async {
     final audioFile = File(p.join(transcriptionDirPath, fileName));
     audioFile.writeAsString(contents);
   }
