@@ -118,18 +118,18 @@ class FfmpegService {
     return outputExtension;
   }
 
-  Future<bool> extractAudioFromVideoToWav(
-    String pathToVideo,
+  Future<bool> extractAudioAsWav(
+    String assetPath,
     String outputPath, {
     int? streamIndex =
         0, //index of the audio stream. Passed as '-map 0:a:$streamIndex'
   }) async {
     try {
       streamIndex ??= 0;
-      _logger.info("Extracing audio from video");
+      _logger.info("Extracing audio from asset: $assetPath");
       final session = await FFmpegKit.executeWithArguments([
         '-i',
-        pathToVideo,
+        assetPath,
         '-map',
         '0:a:$streamIndex',
         '-vn',
@@ -141,22 +141,24 @@ class FfmpegService {
         '1',
         '-f',
         'wav',
-        "$outputPath.wav",
+        outputPath,
       ]);
 
       final returnCode = await session.getReturnCode();
 
-      if (returnCode?.isValueError() == true) {
+      if (returnCode?.isValueSuccess() == false) {
         final logs = (await session.getAllLogs())
             .map((log) => log.getMessage())
             .toList();
         _logger.fine("Error in session. Got session Logs: $logs");
+      } else {
+        _logger.info("Audio extraction successful${await session.getOutput()}");
       }
 
       return returnCode?.isValueSuccess() ?? false;
     } catch (e, stack) {
       _logger.severe(
-        "extractAudioFromVideo(): Error while extracting audio",
+        "extractAudioAsWav(): Error while extracting audio",
         e,
         stack,
       );
@@ -164,8 +166,8 @@ class FfmpegService {
     return false;
   }
 
-  Future<bool> extractAudioFromVideo(
-    String pathToVideo,
+  Future<bool> extractAudio(
+    String assetPath,
     String outputPath, {
     int? streamIndex =
         0, //index of the audio stream. Passed as '-map 0:a:$streamIndex'
@@ -176,7 +178,7 @@ class FfmpegService {
       outputFormat ??= "mka";
       final session = await FFmpegKit.executeWithArguments([
         '-i',
-        pathToVideo,
+        assetPath,
         '-map',
         '0:a:$streamIndex',
         '-vn',
@@ -188,16 +190,22 @@ class FfmpegService {
         '1',
         '-f',
         outputFormat,
-        "$outputPath.$outputFormat",
+        outputPath,
       ]);
       final returnCode = await session.getReturnCode();
+
+      if (returnCode?.isValueSuccess() == false) {
+        final logs = (await session.getAllLogs())
+            .map((log) => log.getMessage())
+            .toList();
+        _logger.fine("Error in session. Got session Logs: $logs");
+      } else {
+        _logger.info("Audio extraction successful${await session.getOutput()}");
+      }
+
       return returnCode?.isValueSuccess() ?? false;
     } catch (e, stack) {
-      _logger.severe(
-        "extractAudioFromVideo(): Error while extracting audio",
-        e,
-        stack,
-      );
+      _logger.severe("extractAudio(): Error while extracting audio", e, stack);
     }
     return false;
   }
