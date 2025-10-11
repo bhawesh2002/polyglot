@@ -14,6 +14,7 @@ abstract class TranscriptionSource with _$TranscriptionSource {
     required TranscriptionSourceType type,
     required String name,
     required String path,
+    String? extractedAudioPath,
     @JsonKey(
       fromJson: DurationConverter.fromFFmpegString,
       toJson: DurationConverter.toJSON,
@@ -158,4 +159,7 @@ extension TranscriptionSourceExtensions on TranscriptionSource {
       streams.whereType<AudioStream>().toList();
   List<VideoStream> get videoStreams =>
       streams.whereType<VideoStream>().toList();
+
+  bool get isAudioExtracted => extractedAudioPath != null;
+  String? get extractedAudioName => extractedAudioPath?.split("/").last;
 }

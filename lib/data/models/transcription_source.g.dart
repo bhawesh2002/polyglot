@@ -11,6 +11,7 @@ _TranscriptionSource _$TranscriptionSourceFromJson(Map<String, dynamic> json) =>
       type: $enumDecode(_$TranscriptionSourceTypeEnumMap, json['type']),
       name: json['name'] as String,
       path: json['path'] as String,
+      extractedAudioPath: json['extractedAudioPath'] as String?,
       duration: DurationConverter.fromFFmpegString(json['duration'] as String),
       format: json['format'] as String,
       startTime: json['startTime'] == null
@@ -34,6 +35,7 @@ Map<String, dynamic> _$TranscriptionSourceToJson(
   'type': _$TranscriptionSourceTypeEnumMap[instance.type]!,
   'name': instance.name,
   'path': instance.path,
+  'extractedAudioPath': instance.extractedAudioPath,
   'duration': DurationConverter.toJSON(instance.duration),
   'format': instance.format,
   'startTime': DurationConverter.toJSON(instance.startTime),

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TranscriptionSource {
 
- TranscriptionSourceType get type; String get name; String get path;@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) Duration get duration; String get format;@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) Duration get startTime; String? get formatLong; Map<String, dynamic>? get tags; List<MediaStream> get streams; double? get bitrate; int? get size; Map<String, dynamic> get metadata;
+ TranscriptionSourceType get type; String get name; String get path; String? get extractedAudioPath;@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) Duration get duration; String get format;@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) Duration get startTime; String? get formatLong; Map<String, dynamic>? get tags; List<MediaStream> get streams; double? get bitrate; int? get size; Map<String, dynamic> get metadata;
 /// Create a copy of TranscriptionSource
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $TranscriptionSourceCopyWith<TranscriptionSource> get copyWith => _$Transcriptio
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TranscriptionSource&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.path, path) || other.path == path)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.format, format) || other.format == format)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.formatLong, formatLong) || other.formatLong == formatLong)&&const DeepCollectionEquality().equals(other.tags, tags)&&const DeepCollectionEquality().equals(other.streams, streams)&&(identical(other.bitrate, bitrate) || other.bitrate == bitrate)&&(identical(other.size, size) || other.size == size)&&const DeepCollectionEquality().equals(other.metadata, metadata));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TranscriptionSource&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.path, path) || other.path == path)&&(identical(other.extractedAudioPath, extractedAudioPath) || other.extractedAudioPath == extractedAudioPath)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.format, format) || other.format == format)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.formatLong, formatLong) || other.formatLong == formatLong)&&const DeepCollectionEquality().equals(other.tags, tags)&&const DeepCollectionEquality().equals(other.streams, streams)&&(identical(other.bitrate, bitrate) || other.bitrate == bitrate)&&(identical(other.size, size) || other.size == size)&&const DeepCollectionEquality().equals(other.metadata, metadata));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,name,path,duration,format,startTime,formatLong,const DeepCollectionEquality().hash(tags),const DeepCollectionEquality().hash(streams),bitrate,size,const DeepCollectionEquality().hash(metadata));
+int get hashCode => Object.hash(runtimeType,type,name,path,extractedAudioPath,duration,format,startTime,formatLong,const DeepCollectionEquality().hash(tags),const DeepCollectionEquality().hash(streams),bitrate,size,const DeepCollectionEquality().hash(metadata));
 
 @override
 String toString() {
-  return 'TranscriptionSource(type: $type, name: $name, path: $path, duration: $duration, format: $format, startTime: $startTime, formatLong: $formatLong, tags: $tags, streams: $streams, bitrate: $bitrate, size: $size, metadata: $metadata)';
+  return 'TranscriptionSource(type: $type, name: $name, path: $path, extractedAudioPath: $extractedAudioPath, duration: $duration, format: $format, startTime: $startTime, formatLong: $formatLong, tags: $tags, streams: $streams, bitrate: $bitrate, size: $size, metadata: $metadata)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $TranscriptionSourceCopyWith<$Res>  {
   factory $TranscriptionSourceCopyWith(TranscriptionSource value, $Res Function(TranscriptionSource) _then) = _$TranscriptionSourceCopyWithImpl;
 @useResult
 $Res call({
- TranscriptionSourceType type, String name, String path,@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) Duration duration, String format,@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) Duration startTime, String? formatLong, Map<String, dynamic>? tags, List<MediaStream> streams, double? bitrate, int? size, Map<String, dynamic> metadata
+ TranscriptionSourceType type, String name, String path, String? extractedAudioPath,@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) Duration duration, String format,@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) Duration startTime, String? formatLong, Map<String, dynamic>? tags, List<MediaStream> streams, double? bitrate, int? size, Map<String, dynamic> metadata
 });
 
 
@@ -65,12 +65,13 @@ class _$TranscriptionSourceCopyWithImpl<$Res>
 
 /// Create a copy of TranscriptionSource
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? type = null,Object? name = null,Object? path = null,Object? duration = null,Object? format = null,Object? startTime = null,Object? formatLong = freezed,Object? tags = freezed,Object? streams = null,Object? bitrate = freezed,Object? size = freezed,Object? metadata = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? type = null,Object? name = null,Object? path = null,Object? extractedAudioPath = freezed,Object? duration = null,Object? format = null,Object? startTime = null,Object? formatLong = freezed,Object? tags = freezed,Object? streams = null,Object? bitrate = freezed,Object? size = freezed,Object? metadata = null,}) {
   return _then(_self.copyWith(
 type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as TranscriptionSourceType,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,path: null == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
-as String,duration: null == duration ? _self.duration : duration // ignore: cast_nullable_to_non_nullable
+as String,extractedAudioPath: freezed == extractedAudioPath ? _self.extractedAudioPath : extractedAudioPath // ignore: cast_nullable_to_non_nullable
+as String?,duration: null == duration ? _self.duration : duration // ignore: cast_nullable_to_non_nullable
 as Duration,format: null == format ? _self.format : format // ignore: cast_nullable_to_non_nullable
 as String,startTime: null == startTime ? _self.startTime : startTime // ignore: cast_nullable_to_non_nullable
 as Duration,formatLong: freezed == formatLong ? _self.formatLong : formatLong // ignore: cast_nullable_to_non_nullable
@@ -164,10 +165,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TranscriptionSourceType type,  String name,  String path, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON)  Duration duration,  String format, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON)  Duration startTime,  String? formatLong,  Map<String, dynamic>? tags,  List<MediaStream> streams,  double? bitrate,  int? size,  Map<String, dynamic> metadata)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TranscriptionSourceType type,  String name,  String path,  String? extractedAudioPath, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON)  Duration duration,  String format, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON)  Duration startTime,  String? formatLong,  Map<String, dynamic>? tags,  List<MediaStream> streams,  double? bitrate,  int? size,  Map<String, dynamic> metadata)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TranscriptionSource() when $default != null:
-return $default(_that.type,_that.name,_that.path,_that.duration,_that.format,_that.startTime,_that.formatLong,_that.tags,_that.streams,_that.bitrate,_that.size,_that.metadata);case _:
+return $default(_that.type,_that.name,_that.path,_that.extractedAudioPath,_that.duration,_that.format,_that.startTime,_that.formatLong,_that.tags,_that.streams,_that.bitrate,_that.size,_that.metadata);case _:
   return orElse();
 
 }
@@ -185,10 +186,10 @@ return $default(_that.type,_that.name,_that.path,_that.duration,_that.format,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TranscriptionSourceType type,  String name,  String path, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON)  Duration duration,  String format, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON)  Duration startTime,  String? formatLong,  Map<String, dynamic>? tags,  List<MediaStream> streams,  double? bitrate,  int? size,  Map<String, dynamic> metadata)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TranscriptionSourceType type,  String name,  String path,  String? extractedAudioPath, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON)  Duration duration,  String format, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON)  Duration startTime,  String? formatLong,  Map<String, dynamic>? tags,  List<MediaStream> streams,  double? bitrate,  int? size,  Map<String, dynamic> metadata)  $default,) {final _that = this;
 switch (_that) {
 case _TranscriptionSource():
-return $default(_that.type,_that.name,_that.path,_that.duration,_that.format,_that.startTime,_that.formatLong,_that.tags,_that.streams,_that.bitrate,_that.size,_that.metadata);case _:
+return $default(_that.type,_that.name,_that.path,_that.extractedAudioPath,_that.duration,_that.format,_that.startTime,_that.formatLong,_that.tags,_that.streams,_that.bitrate,_that.size,_that.metadata);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -205,10 +206,10 @@ return $default(_that.type,_that.name,_that.path,_that.duration,_that.format,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TranscriptionSourceType type,  String name,  String path, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON)  Duration duration,  String format, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON)  Duration startTime,  String? formatLong,  Map<String, dynamic>? tags,  List<MediaStream> streams,  double? bitrate,  int? size,  Map<String, dynamic> metadata)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TranscriptionSourceType type,  String name,  String path,  String? extractedAudioPath, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON)  Duration duration,  String format, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON)  Duration startTime,  String? formatLong,  Map<String, dynamic>? tags,  List<MediaStream> streams,  double? bitrate,  int? size,  Map<String, dynamic> metadata)?  $default,) {final _that = this;
 switch (_that) {
 case _TranscriptionSource() when $default != null:
-return $default(_that.type,_that.name,_that.path,_that.duration,_that.format,_that.startTime,_that.formatLong,_that.tags,_that.streams,_that.bitrate,_that.size,_that.metadata);case _:
+return $default(_that.type,_that.name,_that.path,_that.extractedAudioPath,_that.duration,_that.format,_that.startTime,_that.formatLong,_that.tags,_that.streams,_that.bitrate,_that.size,_that.metadata);case _:
   return null;
 
 }
@@ -220,12 +221,13 @@ return $default(_that.type,_that.name,_that.path,_that.duration,_that.format,_th
 @JsonSerializable()
 
 class _TranscriptionSource implements TranscriptionSource {
-  const _TranscriptionSource({required this.type, required this.name, required this.path, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) required this.duration, required this.format, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) this.startTime = Duration.zero, this.formatLong, final  Map<String, dynamic>? tags, final  List<MediaStream> streams = const [], this.bitrate, this.size, required final  Map<String, dynamic> metadata}): _tags = tags,_streams = streams,_metadata = metadata;
+  const _TranscriptionSource({required this.type, required this.name, required this.path, this.extractedAudioPath, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) required this.duration, required this.format, @JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) this.startTime = Duration.zero, this.formatLong, final  Map<String, dynamic>? tags, final  List<MediaStream> streams = const [], this.bitrate, this.size, required final  Map<String, dynamic> metadata}): _tags = tags,_streams = streams,_metadata = metadata;
   factory _TranscriptionSource.fromJson(Map<String, dynamic> json) => _$TranscriptionSourceFromJson(json);
 
 @override final  TranscriptionSourceType type;
 @override final  String name;
 @override final  String path;
+@override final  String? extractedAudioPath;
 @override@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) final  Duration duration;
 @override final  String format;
 @override@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) final  Duration startTime;
@@ -269,16 +271,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TranscriptionSource&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.path, path) || other.path == path)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.format, format) || other.format == format)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.formatLong, formatLong) || other.formatLong == formatLong)&&const DeepCollectionEquality().equals(other._tags, _tags)&&const DeepCollectionEquality().equals(other._streams, _streams)&&(identical(other.bitrate, bitrate) || other.bitrate == bitrate)&&(identical(other.size, size) || other.size == size)&&const DeepCollectionEquality().equals(other._metadata, _metadata));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TranscriptionSource&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.path, path) || other.path == path)&&(identical(other.extractedAudioPath, extractedAudioPath) || other.extractedAudioPath == extractedAudioPath)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.format, format) || other.format == format)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.formatLong, formatLong) || other.formatLong == formatLong)&&const DeepCollectionEquality().equals(other._tags, _tags)&&const DeepCollectionEquality().equals(other._streams, _streams)&&(identical(other.bitrate, bitrate) || other.bitrate == bitrate)&&(identical(other.size, size) || other.size == size)&&const DeepCollectionEquality().equals(other._metadata, _metadata));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,name,path,duration,format,startTime,formatLong,const DeepCollectionEquality().hash(_tags),const DeepCollectionEquality().hash(_streams),bitrate,size,const DeepCollectionEquality().hash(_metadata));
+int get hashCode => Object.hash(runtimeType,type,name,path,extractedAudioPath,duration,format,startTime,formatLong,const DeepCollectionEquality().hash(_tags),const DeepCollectionEquality().hash(_streams),bitrate,size,const DeepCollectionEquality().hash(_metadata));
 
 @override
 String toString() {
-  return 'TranscriptionSource(type: $type, name: $name, path: $path, duration: $duration, format: $format, startTime: $startTime, formatLong: $formatLong, tags: $tags, streams: $streams, bitrate: $bitrate, size: $size, metadata: $metadata)';
+  return 'TranscriptionSource(type: $type, name: $name, path: $path, extractedAudioPath: $extractedAudioPath, duration: $duration, format: $format, startTime: $startTime, formatLong: $formatLong, tags: $tags, streams: $streams, bitrate: $bitrate, size: $size, metadata: $metadata)';
 }
 
 
@@ -289,7 +291,7 @@ abstract mixin class _$TranscriptionSourceCopyWith<$Res> implements $Transcripti
   factory _$TranscriptionSourceCopyWith(_TranscriptionSource value, $Res Function(_TranscriptionSource) _then) = __$TranscriptionSourceCopyWithImpl;
 @override @useResult
 $Res call({
- TranscriptionSourceType type, String name, String path,@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) Duration duration, String format,@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) Duration startTime, String? formatLong, Map<String, dynamic>? tags, List<MediaStream> streams, double? bitrate, int? size, Map<String, dynamic> metadata
+ TranscriptionSourceType type, String name, String path, String? extractedAudioPath,@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) Duration duration, String format,@JsonKey(fromJson: DurationConverter.fromFFmpegString, toJson: DurationConverter.toJSON) Duration startTime, String? formatLong, Map<String, dynamic>? tags, List<MediaStream> streams, double? bitrate, int? size, Map<String, dynamic> metadata
 });
 
 
@@ -306,12 +308,13 @@ class __$TranscriptionSourceCopyWithImpl<$Res>
 
 /// Create a copy of TranscriptionSource
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? type = null,Object? name = null,Object? path = null,Object? duration = null,Object? format = null,Object? startTime = null,Object? formatLong = freezed,Object? tags = freezed,Object? streams = null,Object? bitrate = freezed,Object? size = freezed,Object? metadata = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? type = null,Object? name = null,Object? path = null,Object? extractedAudioPath = freezed,Object? duration = null,Object? format = null,Object? startTime = null,Object? formatLong = freezed,Object? tags = freezed,Object? streams = null,Object? bitrate = freezed,Object? size = freezed,Object? metadata = null,}) {
   return _then(_TranscriptionSource(
 type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as TranscriptionSourceType,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,path: null == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
-as String,duration: null == duration ? _self.duration : duration // ignore: cast_nullable_to_non_nullable
+as String,extractedAudioPath: freezed == extractedAudioPath ? _self.extractedAudioPath : extractedAudioPath // ignore: cast_nullable_to_non_nullable
+as String?,duration: null == duration ? _self.duration : duration // ignore: cast_nullable_to_non_nullable
 as Duration,format: null == format ? _self.format : format // ignore: cast_nullable_to_non_nullable
 as String,startTime: null == startTime ? _self.startTime : startTime // ignore: cast_nullable_to_non_nullable
 as Duration,formatLong: freezed == formatLong ? _self.formatLong : formatLong // ignore: cast_nullable_to_non_nullable
