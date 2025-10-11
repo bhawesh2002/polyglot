@@ -138,7 +138,7 @@ abstract class TranscriptionSource with _$TranscriptionSource {
       type: hasVideo
           ? TranscriptionSourceType.video
           : TranscriptionSourceType.audio,
-      name: info.getFilename()?.toString() ?? '',
+      name: info.getFilename()?.toString().split("/").last ?? '',
       path: info.getFilename()?.toString() ?? '',
       duration: duration,
       format: info.getFormat() ?? '',
