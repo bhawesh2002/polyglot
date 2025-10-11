@@ -152,3 +152,10 @@ abstract class TranscriptionSource with _$TranscriptionSource {
     );
   }
 }
+
+extension TranscriptionSourceExtensions on TranscriptionSource {
+  List<AudioStream> get audioStreams =>
+      streams.whereType<AudioStream>().toList();
+  List<VideoStream> get videoStreams =>
+      streams.whereType<VideoStream>().toList();
+}
