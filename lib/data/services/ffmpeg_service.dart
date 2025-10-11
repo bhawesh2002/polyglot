@@ -121,9 +121,11 @@ class FfmpegService {
   Future<bool> extractAudioFromVideoToWav(
     String pathToVideo,
     String outputPath, {
-    int? streamIndex = 0,
+    int? streamIndex =
+        0, //index of the audio stream. Passed as '-map 0:a:$streamIndex'
   }) async {
     try {
+      streamIndex ??= 0;
       _logger.info("Extracing audio from video");
       final session = await FFmpegKit.executeWithArguments([
         '-i',
@@ -165,10 +167,13 @@ class FfmpegService {
   Future<bool> extractAudioFromVideo(
     String pathToVideo,
     String outputPath, {
-    int? streamIndex = 0,
+    int? streamIndex =
+        0, //index of the audio stream. Passed as '-map 0:a:$streamIndex'
     String? outputFormat = "mka",
   }) async {
     try {
+      streamIndex ??= 0;
+      outputFormat ??= "mka";
       final session = await FFmpegKit.executeWithArguments([
         '-i',
         pathToVideo,
@@ -182,7 +187,7 @@ class FfmpegService {
         '-ac',
         '1',
         '-f',
-        outputFormat!,
+        outputFormat,
         "$outputPath.$outputFormat",
       ]);
       final returnCode = await session.getReturnCode();
