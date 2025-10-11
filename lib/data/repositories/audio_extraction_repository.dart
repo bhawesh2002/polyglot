@@ -51,23 +51,23 @@ class AudioExtractionRepository {
   }
 
   Future<TranscriptionSource?> extractAudio(
-    TranscriptionSource source,
+    TranscriptionSource source, {
     int? streamIndex,
-  ) async {
+  }) async {
     final fileName = source.name.split(".");
     fileName.removeLast();
     fileName.join(".");
     final String opPath =
-        "${StorageService.appDocDirLoc}/${fileName}_${DateTime.now().millisecondsSinceEpoch}";
-    final result = await _ffmpegService.extractAudioFromVideoToWav(
+        "${StorageService.appDocDirLoc}/${fileName}_${DateTime.now().millisecondsSinceEpoch}.wav";
+    final result = await _ffmpegService.extractAudioAsWav(
       source.path,
       opPath,
       streamIndex: streamIndex,
     );
     if (result) {
-      source = source.copyWith();
+      source = source.copyWith(extractedAudioPath: opPath);
     }
-    return null;
+    return source;
   }
 
   Future<MediaInformation?> getMediaInfo({required String assetPath}) async {
