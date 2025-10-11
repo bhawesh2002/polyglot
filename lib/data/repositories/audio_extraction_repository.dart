@@ -1,3 +1,5 @@
+import 'package:ffmpeg_kit_flutter_new/media_information.dart';
+import 'package:ffmpeg_kit_flutter_new/stream_information.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:logging/logging.dart';
 import 'package:polyglot/data/models/transcription_source.dart';
@@ -40,18 +42,7 @@ class AudioExtractionRepository {
       TranscriptionSource? source;
       if (info != null) {
         if (_ffmpegService.classifyMediaFile(assetPath, info) == 'video') {
-          final fileName = assetName.split(".");
-          fileName.removeLast();
-          fileName.join(".");
-          final String opPath =
-              "${StorageService.appDocDirLoc}/${fileName}_${DateTime.now().millisecondsSinceEpoch}";
-          final result = await _ffmpegService.extractAudioFromVideoToWav(
-            assetPath,
-            opPath,
-          );
-          if (result) {
-            source = TranscriptionSource.fromMediaInformation(info);
-          }
+          source = await extractAudio(assetName, assetPath, info);
         } else {
           source = TranscriptionSource.fromMediaInformation(info);
         }
@@ -62,5 +53,53 @@ class AudioExtractionRepository {
       _logger.severe("extract(): Error while extracting audio", e, stack);
     }
     return null;
+  }
+
+  Future<TranscriptionSource?> extractAudio(
+    String assetName,
+    String assetPath,
+    MediaInformation info,
+  ) async {
+    final fileName = assetName.split(".");
+    fileName.removeLast();
+    fileName.join(".");
+    final String opPath =
+        "${StorageService.appDocDirLoc}/${fileName}_${DateTime.now().millisecondsSinceEpoch}";
+    final result = await _ffmpegService.extractAudioFromVideoToWav(
+      assetPath,
+      opPath,
+    );
+    if (result) {
+      return TranscriptionSource.fromMediaInformation(info);
+    }
+    return null;
+  }
+
+  Future<MediaInformation?> getMediaInfo({required String assetPath}) async {
+    try {
+      final info = await _ffmpegService.getAssetInfo(assetPath);
+      return info;
+    } catch (e, stack) {
+      _logger.severe(
+        "getMediaInfo(): Error while extracting media info",
+        e,
+        stack,
+      );
+    }
+    return null;
+  }
+
+  List<StreamInformation> extractAvailableAudioStreams(MediaInformation info) {
+    try {
+      final streams = _ffmpegService.getMediaStreams(info);
+      if (streams.containsKey('audio')) return streams['audio'];
+    } catch (e, stack) {
+      _logger.severe(
+        "getAvailableAudioStreams(): Error while extracting audio streams",
+        e,
+        stack,
+      );
+    }
+    return [];
   }
 }
