@@ -126,7 +126,7 @@ class FfmpegService {
         '1',
         '-f',
         'wav',
-        outputPath,
+        "$outputPath.wav",
       ]);
 
       final returnCode = await session.getReturnCode();
@@ -170,7 +170,7 @@ class FfmpegService {
         '1',
         '-f',
         outputFormat!,
-        outputPath,
+        "$outputPath.$outputFormat",
       ]);
       final returnCode = await session.getReturnCode();
       return returnCode?.isValueSuccess() ?? false;
