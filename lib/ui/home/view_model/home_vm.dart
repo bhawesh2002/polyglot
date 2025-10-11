@@ -50,6 +50,7 @@ class HomeVm extends _$HomeVm {
     try {
       state = state.copyWith(processingFile: true);
       final source = await _audioExtractionRepository.extract(
+        state.selectedFile!.name,
         state.selectedFile!.path!,
       );
       state = state.copyWith(
