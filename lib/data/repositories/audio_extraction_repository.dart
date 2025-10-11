@@ -44,7 +44,7 @@ class AudioExtractionRepository {
           fileName.removeLast();
           fileName.join(".");
           final String opPath =
-              "${StorageService.appDirLoc}/${fileName}_${DateTime.now().millisecondsSinceEpoch}";
+              "${StorageService.appDocDirLoc}/${fileName}_${DateTime.now().millisecondsSinceEpoch}";
           final result = await _ffmpegService.extractAudioFromVideoToWav(
             assetPath,
             opPath,
