@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polyglot/data/models/media_stream.dart';
+import 'package:polyglot/data/models/transcription_source.dart';
 import 'package:polyglot/ui/home/view_model/home_vm.dart';
 import 'package:polyglot/utils/constants.dart';
 import 'package:polyglot/utils/extension.dart';
@@ -94,7 +95,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         ),
                       ),
                     ),
-                  if (viewModel.transcriptionSource != null)
+                  if (viewModel.transcriptionSource != null &&
+                      !viewModel.transcriptionSource!.isAudioExtracted)
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 18.0),
                       child: TextButton(
@@ -140,6 +142,33 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             ],
                           ),
                         ),
+                      ),
+                    ),
+                  if (viewModel.transcriptionSource != null &&
+                      viewModel.transcriptionSource!.isAudioExtracted)
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "Audio Extracted Successfully",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          if (viewModel.extractingAudio)
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 18.0,
+                              ),
+                              child: SizedBox.square(
+                                dimension: 20,
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                        ],
                       ),
                     ),
                   if (viewModel.transcriptionSource != null)
