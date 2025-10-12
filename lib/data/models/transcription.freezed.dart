@@ -22,8 +22,6 @@ mixin _$Transcription {
 @pragma('vm:prefer-inline')
 $TranscriptionCopyWith<Transcription> get copyWith => _$TranscriptionCopyWithImpl<Transcription>(this as Transcription, _$identity);
 
-  /// Serializes this Transcription to a JSON map.
-  Map<String, dynamic> toJson();
 
 
 @override
@@ -52,7 +50,7 @@ $Res call({
 });
 
 
-$TranscriptionSourceCopyWith<$Res> get source;
+
 
 }
 /// @nodoc
@@ -66,7 +64,7 @@ class _$TranscriptionCopyWithImpl<$Res>
 /// Create a copy of Transcription
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? source = null,Object? transcription = freezed,Object? translation = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(Transcription(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
@@ -75,16 +73,7 @@ as Map<String, dynamic>?,translation: freezed == translation ? _self.translation
 as List<Translation>?,
   ));
 }
-/// Create a copy of Transcription
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TranscriptionSourceCopyWith<$Res> get source {
-  
-  return $TranscriptionSourceCopyWith<$Res>(_self.source, (value) {
-    return _then(_self.copyWith(source: value));
-  });
-}
+
 }
 
 
@@ -102,11 +91,10 @@ extension TranscriptionPatterns on Transcription {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Transcription value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Transcription() when $default != null:
-return $default(_that);case _:
+case _:
   return orElse();
 
 }
@@ -124,11 +112,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Transcription value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(){
 final _that = this;
 switch (_that) {
-case _Transcription():
-return $default(_that);case _:
+case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -145,11 +132,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Transcription value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
 final _that = this;
 switch (_that) {
-case _Transcription() when $default != null:
-return $default(_that);case _:
+case _:
   return null;
 
 }
@@ -166,10 +152,9 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  TranscriptionSource source,  Map<String, dynamic>? transcription,  List<Translation>? translation)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Transcription() when $default != null:
-return $default(_that.id,_that.name,_that.source,_that.transcription,_that.translation);case _:
+case _:
   return orElse();
 
 }
@@ -187,10 +172,9 @@ return $default(_that.id,_that.name,_that.source,_that.transcription,_that.trans
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  TranscriptionSource source,  Map<String, dynamic>? transcription,  List<Translation>? translation)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
 switch (_that) {
-case _Transcription():
-return $default(_that.id,_that.name,_that.source,_that.transcription,_that.translation);case _:
+case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -207,117 +191,14 @@ return $default(_that.id,_that.name,_that.source,_that.transcription,_that.trans
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  TranscriptionSource source,  Map<String, dynamic>? transcription,  List<Translation>? translation)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
 switch (_that) {
-case _Transcription() when $default != null:
-return $default(_that.id,_that.name,_that.source,_that.transcription,_that.translation);case _:
+case _:
   return null;
 
 }
 }
 
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _Transcription implements Transcription {
-  const _Transcription({required this.id, required this.name, required this.source, final  Map<String, dynamic>? transcription, final  List<Translation>? translation}): _transcription = transcription,_translation = translation;
-  factory _Transcription.fromJson(Map<String, dynamic> json) => _$TranscriptionFromJson(json);
-
-@override final  int id;
-@override final  String name;
-@override final  TranscriptionSource source;
- final  Map<String, dynamic>? _transcription;
-@override Map<String, dynamic>? get transcription {
-  final value = _transcription;
-  if (value == null) return null;
-  if (_transcription is EqualUnmodifiableMapView) return _transcription;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableMapView(value);
-}
-
- final  List<Translation>? _translation;
-@override List<Translation>? get translation {
-  final value = _translation;
-  if (value == null) return null;
-  if (_translation is EqualUnmodifiableListView) return _translation;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-
-/// Create a copy of Transcription
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$TranscriptionCopyWith<_Transcription> get copyWith => __$TranscriptionCopyWithImpl<_Transcription>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$TranscriptionToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Transcription&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.source, source) || other.source == source)&&const DeepCollectionEquality().equals(other._transcription, _transcription)&&const DeepCollectionEquality().equals(other._translation, _translation));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,id,name,source,const DeepCollectionEquality().hash(_transcription),const DeepCollectionEquality().hash(_translation));
-
-@override
-String toString() {
-  return 'Transcription(id: $id, name: $name, source: $source, transcription: $transcription, translation: $translation)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$TranscriptionCopyWith<$Res> implements $TranscriptionCopyWith<$Res> {
-  factory _$TranscriptionCopyWith(_Transcription value, $Res Function(_Transcription) _then) = __$TranscriptionCopyWithImpl;
-@override @useResult
-$Res call({
- int id, String name, TranscriptionSource source, Map<String, dynamic>? transcription, List<Translation>? translation
-});
-
-
-@override $TranscriptionSourceCopyWith<$Res> get source;
-
-}
-/// @nodoc
-class __$TranscriptionCopyWithImpl<$Res>
-    implements _$TranscriptionCopyWith<$Res> {
-  __$TranscriptionCopyWithImpl(this._self, this._then);
-
-  final _Transcription _self;
-  final $Res Function(_Transcription) _then;
-
-/// Create a copy of Transcription
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? source = null,Object? transcription = freezed,Object? translation = freezed,}) {
-  return _then(_Transcription(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as TranscriptionSource,transcription: freezed == transcription ? _self._transcription : transcription // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,translation: freezed == translation ? _self._translation : translation // ignore: cast_nullable_to_non_nullable
-as List<Translation>?,
-  ));
-}
-
-/// Create a copy of Transcription
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$TranscriptionSourceCopyWith<$Res> get source {
-  
-  return $TranscriptionSourceCopyWith<$Res>(_self.source, (value) {
-    return _then(_self.copyWith(source: value));
-  });
-}
 }
 
 // dart format on

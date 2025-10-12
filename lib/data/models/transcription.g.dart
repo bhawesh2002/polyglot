@@ -6,8 +6,8 @@ part of 'transcription.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_Transcription _$TranscriptionFromJson(Map<String, dynamic> json) =>
-    _Transcription(
+Transcription _$TranscriptionFromJson(Map<String, dynamic> json) =>
+    Transcription(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       source: TranscriptionSource.fromJson(
@@ -19,7 +19,7 @@ _Transcription _$TranscriptionFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$TranscriptionToJson(_Transcription instance) =>
+Map<String, dynamic> _$TranscriptionToJson(Transcription instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

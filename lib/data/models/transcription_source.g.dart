@@ -6,8 +6,8 @@ part of 'transcription_source.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_TranscriptionSource _$TranscriptionSourceFromJson(Map<String, dynamic> json) =>
-    _TranscriptionSource(
+TranscriptionSource _$TranscriptionSourceFromJson(Map<String, dynamic> json) =>
+    TranscriptionSource(
       type: $enumDecode(_$TranscriptionSourceTypeEnumMap, json['type']),
       name: json['name'] as String,
       path: json['path'] as String,
@@ -30,7 +30,7 @@ _TranscriptionSource _$TranscriptionSourceFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$TranscriptionSourceToJson(
-  _TranscriptionSource instance,
+  TranscriptionSource instance,
 ) => <String, dynamic>{
   'type': _$TranscriptionSourceTypeEnumMap[instance.type]!,
   'name': instance.name,

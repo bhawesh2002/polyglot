@@ -1,5 +1,6 @@
 import 'package:ffmpeg_kit_flutter_new/media_information.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive_ce_flutter/adapters.dart';
 
 import 'package:polyglot/data/models/converters/duration_converter.dart';
 import 'package:polyglot/data/models/media_stream.dart';
@@ -9,33 +10,67 @@ part 'transcription_source.freezed.dart';
 part 'transcription_source.g.dart';
 
 @freezed
-abstract class TranscriptionSource with _$TranscriptionSource {
-  const factory TranscriptionSource({
-    required TranscriptionSourceType type,
-    required String name,
-    required String path,
-    String? extractedAudioPath,
-    @JsonKey(
-      fromJson: DurationConverter.fromFFmpegString,
-      toJson: DurationConverter.toJSON,
-    )
-    required Duration duration,
-    required String format,
-    @JsonKey(
-      fromJson: DurationConverter.fromFFmpegString,
-      toJson: DurationConverter.toJSON,
-    )
-    @Default(Duration.zero)
-    Duration startTime,
-    String? formatLong,
-    Map<String, dynamic>? tags,
-    @Default([]) List<MediaStream> streams,
-    double? bitrate,
-    int? size,
-    required Map<String, dynamic> metadata,
-  }) = _TranscriptionSource;
+@JsonSerializable()
+class TranscriptionSource extends HiveObject with _$TranscriptionSource {
+  TranscriptionSource({
+    required this.type,
+    required this.name,
+    required this.path,
+    this.extractedAudioPath,
+
+    required this.duration,
+    required this.format,
+    this.startTime = Duration.zero,
+    this.formatLong,
+    this.tags,
+    this.streams = const [],
+    this.bitrate,
+    this.size,
+    required this.metadata,
+  });
+
+  @override
+  final TranscriptionSourceType type;
+  @override
+  final String name;
+  @override
+  final String path;
+  @override
+  final String? extractedAudioPath;
+
+  @override
+  @JsonKey(
+    fromJson: DurationConverter.fromFFmpegString,
+    toJson: DurationConverter.toJSON,
+  )
+  final Duration duration;
+
+  @override
+  final String format;
+
+  @override
+  @JsonKey(
+    fromJson: DurationConverter.fromFFmpegString,
+    toJson: DurationConverter.toJSON,
+  )
+  final Duration startTime;
+  @override
+  final String? formatLong;
+  @override
+  final Map<String, dynamic>? tags;
+  @override
+  final List<MediaStream> streams;
+  @override
+  final double? bitrate;
+  @override
+  final int? size;
+  @override
+  final Map<String, dynamic> metadata;
+
   factory TranscriptionSource.fromJson(Map<String, dynamic> json) =>
       _$TranscriptionSourceFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TranscriptionSourceToJson(this);
 
   static TranscriptionSource fromMediaInformation(MediaInformation info) {
     Map<String, dynamic> mapToStringDynamic(Map<dynamic, dynamic>? m) =>
