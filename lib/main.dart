@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_ce_flutter/adapters.dart';
 import 'package:logging/logging.dart';
 import 'package:polyglot/data/models/hive/hive_registrar.g.dart';
+import 'package:polyglot/data/models/hive/hive_utils.dart';
 import 'package:polyglot/routing/app_router.dart';
 import 'dart:developer' as developer;
 
@@ -24,6 +25,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapters();
+  await HiveUtils.openBoxes();
   runApp(ProviderScope(child: const MainApp()));
 }
 
