@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polyglot/data/models/media_stream.dart';
 import 'package:polyglot/data/models/transcription_source.dart';
 import 'package:polyglot/ui/home/view_model/home_vm.dart';
+import 'package:polyglot/ui/sidebar/app_sidebar.dart';
 import 'package:polyglot/utils/constants.dart';
 import 'package:polyglot/utils/extension.dart';
 
@@ -15,6 +16,7 @@ class HomeView extends ConsumerStatefulWidget {
 }
 
 class _HomeViewState extends ConsumerState<HomeView> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     final viewModel = ref.watch(homeVmProvider);
@@ -37,6 +39,20 @@ class _HomeViewState extends ConsumerState<HomeView> {
     });
 
     return Scaffold(
+      key: _scaffoldKey,
+      appBar: AppBar(
+        title: Text("Polyglot"),
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () {
+            if (_scaffoldKey.currentState?.isDrawerOpen == false) {
+              _scaffoldKey.currentState?.openDrawer();
+            }
+          },
+          icon: Icon(Icons.menu),
+        ),
+      ),
+      drawer: AppSidebar(),
       body: Padding(
         padding:
             context.devicePadding +
