@@ -47,8 +47,16 @@ types:
         index: 11
       metadata:
         index: 12
-  Translation:
+  TranscriptionSourceType:
     typeId: 2
+    nextIndex: 2
+    fields:
+      audio:
+        index: 0
+      video:
+        index: 1
+  Translation:
+    typeId: 3
     nextIndex: 5
     fields:
       transcriptionId:
@@ -62,7 +70,7 @@ types:
       size:
         index: 4
   VideoStream:
-    typeId: 3
+    typeId: 4
     nextIndex: 15
     fields:
       index:
@@ -96,7 +104,7 @@ types:
       tags:
         index: 14
   AudioStream:
-    typeId: 4
+    typeId: 5
     nextIndex: 12
     fields:
       index:
@@ -123,11 +131,3 @@ types:
         index: 10
       tags:
         index: 11
-  TranscriptionSourceType:
-    typeId: 5
-    nextIndex: 2
-    fields:
-      audio:
-        index: 0
-      video:
-        index: 1

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'hive_adaptors.dart';
+part of 'hive_adapters.dart';
 
 // **************************************************************************
 // AdaptersGenerator
@@ -124,9 +124,47 @@ class TranscriptionSourceAdapter extends TypeAdapter<TranscriptionSource> {
           typeId == other.typeId;
 }
 
-class TranslationAdapter extends TypeAdapter<Translation> {
+class TranscriptionSourceTypeAdapter
+    extends TypeAdapter<TranscriptionSourceType> {
   @override
   final typeId = 2;
+
+  @override
+  TranscriptionSourceType read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 0:
+        return TranscriptionSourceType.audio;
+      case 1:
+        return TranscriptionSourceType.video;
+      default:
+        return TranscriptionSourceType.audio;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, TranscriptionSourceType obj) {
+    switch (obj) {
+      case TranscriptionSourceType.audio:
+        writer.writeByte(0);
+      case TranscriptionSourceType.video:
+        writer.writeByte(1);
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TranscriptionSourceTypeAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class TranslationAdapter extends TypeAdapter<Translation> {
+  @override
+  final typeId = 3;
 
   @override
   Translation read(BinaryReader reader) {
@@ -172,7 +210,7 @@ class TranslationAdapter extends TypeAdapter<Translation> {
 
 class VideoStreamAdapter extends TypeAdapter<VideoStream> {
   @override
-  final typeId = 3;
+  final typeId = 4;
 
   @override
   VideoStream read(BinaryReader reader) {
@@ -248,7 +286,7 @@ class VideoStreamAdapter extends TypeAdapter<VideoStream> {
 
 class AudioStreamAdapter extends TypeAdapter<AudioStream> {
   @override
-  final typeId = 4;
+  final typeId = 5;
 
   @override
   AudioStream read(BinaryReader reader) {
@@ -309,44 +347,6 @@ class AudioStreamAdapter extends TypeAdapter<AudioStream> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is AudioStreamAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
-class TranscriptionSourceTypeAdapter
-    extends TypeAdapter<TranscriptionSourceType> {
-  @override
-  final typeId = 5;
-
-  @override
-  TranscriptionSourceType read(BinaryReader reader) {
-    switch (reader.readByte()) {
-      case 0:
-        return TranscriptionSourceType.audio;
-      case 1:
-        return TranscriptionSourceType.video;
-      default:
-        return TranscriptionSourceType.audio;
-    }
-  }
-
-  @override
-  void write(BinaryWriter writer, TranscriptionSourceType obj) {
-    switch (obj) {
-      case TranscriptionSourceType.audio:
-        writer.writeByte(0);
-      case TranscriptionSourceType.video:
-        writer.writeByte(1);
-    }
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is TranscriptionSourceTypeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

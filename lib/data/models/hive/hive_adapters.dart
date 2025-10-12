@@ -5,7 +5,7 @@ import 'package:polyglot/data/models/transcription_source.dart';
 import 'package:polyglot/data/models/translation.dart';
 import 'package:polyglot/utils/enums.dart';
 
-part 'hive_adaptors.g.dart';
+part 'hive_adapters.g.dart';
 
 @GenerateAdapters([
   AdapterSpec<Transcription>(),
@@ -15,4 +15,4 @@ part 'hive_adaptors.g.dart';
   AdapterSpec<VideoStream>(),
   AdapterSpec<AudioStream>(),
 ])
-class HiveAdaptors {}
+class HiveAdapters {}
