@@ -157,9 +157,11 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 audioStreams: vmNotifier.audioStreams!,
                               ),
                             );
-                            await vmNotifier.beginAudioExtraction(
-                              streamIndex: selectedIndex,
-                            );
+                            if (selectedIndex != null) {
+                              await vmNotifier.beginAudioExtraction(
+                                streamIndex: selectedIndex,
+                              );
+                            }
                           }
                         },
 
