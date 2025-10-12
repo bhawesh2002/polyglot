@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomeVmState {
 
- bool get initialized; PlatformFile? get selectedFile; TranscriptionSource? get transcriptionSource; bool get processingFile; bool get extractingAudio; Exception? get exception;
+ bool get initialized; PlatformFile? get selectedFile; TranscriptionSource? get transcriptionSource; bool get pickingFile; bool get processingFile; bool get extractingAudio; Exception? get exception;
 /// Create a copy of HomeVmState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $HomeVmStateCopyWith<HomeVmState> get copyWith => _$HomeVmStateCopyWithImpl<Home
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeVmState&&(identical(other.initialized, initialized) || other.initialized == initialized)&&(identical(other.selectedFile, selectedFile) || other.selectedFile == selectedFile)&&(identical(other.transcriptionSource, transcriptionSource) || other.transcriptionSource == transcriptionSource)&&(identical(other.processingFile, processingFile) || other.processingFile == processingFile)&&(identical(other.extractingAudio, extractingAudio) || other.extractingAudio == extractingAudio)&&(identical(other.exception, exception) || other.exception == exception));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeVmState&&(identical(other.initialized, initialized) || other.initialized == initialized)&&(identical(other.selectedFile, selectedFile) || other.selectedFile == selectedFile)&&(identical(other.transcriptionSource, transcriptionSource) || other.transcriptionSource == transcriptionSource)&&(identical(other.pickingFile, pickingFile) || other.pickingFile == pickingFile)&&(identical(other.processingFile, processingFile) || other.processingFile == processingFile)&&(identical(other.extractingAudio, extractingAudio) || other.extractingAudio == extractingAudio)&&(identical(other.exception, exception) || other.exception == exception));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,initialized,selectedFile,transcriptionSource,processingFile,extractingAudio,exception);
+int get hashCode => Object.hash(runtimeType,initialized,selectedFile,transcriptionSource,pickingFile,processingFile,extractingAudio,exception);
 
 @override
 String toString() {
-  return 'HomeVmState(initialized: $initialized, selectedFile: $selectedFile, transcriptionSource: $transcriptionSource, processingFile: $processingFile, extractingAudio: $extractingAudio, exception: $exception)';
+  return 'HomeVmState(initialized: $initialized, selectedFile: $selectedFile, transcriptionSource: $transcriptionSource, pickingFile: $pickingFile, processingFile: $processingFile, extractingAudio: $extractingAudio, exception: $exception)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $HomeVmStateCopyWith<$Res>  {
   factory $HomeVmStateCopyWith(HomeVmState value, $Res Function(HomeVmState) _then) = _$HomeVmStateCopyWithImpl;
 @useResult
 $Res call({
- bool initialized, PlatformFile? selectedFile, TranscriptionSource? transcriptionSource, bool processingFile, bool extractingAudio, Exception? exception
+ bool initialized, PlatformFile? selectedFile, TranscriptionSource? transcriptionSource, bool pickingFile, bool processingFile, bool extractingAudio, Exception? exception
 });
 
 
@@ -62,12 +62,13 @@ class _$HomeVmStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeVmState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? initialized = null,Object? selectedFile = freezed,Object? transcriptionSource = freezed,Object? processingFile = null,Object? extractingAudio = null,Object? exception = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? initialized = null,Object? selectedFile = freezed,Object? transcriptionSource = freezed,Object? pickingFile = null,Object? processingFile = null,Object? extractingAudio = null,Object? exception = freezed,}) {
   return _then(_self.copyWith(
 initialized: null == initialized ? _self.initialized : initialized // ignore: cast_nullable_to_non_nullable
 as bool,selectedFile: freezed == selectedFile ? _self.selectedFile : selectedFile // ignore: cast_nullable_to_non_nullable
 as PlatformFile?,transcriptionSource: freezed == transcriptionSource ? _self.transcriptionSource : transcriptionSource // ignore: cast_nullable_to_non_nullable
-as TranscriptionSource?,processingFile: null == processingFile ? _self.processingFile : processingFile // ignore: cast_nullable_to_non_nullable
+as TranscriptionSource?,pickingFile: null == pickingFile ? _self.pickingFile : pickingFile // ignore: cast_nullable_to_non_nullable
+as bool,processingFile: null == processingFile ? _self.processingFile : processingFile // ignore: cast_nullable_to_non_nullable
 as bool,extractingAudio: null == extractingAudio ? _self.extractingAudio : extractingAudio // ignore: cast_nullable_to_non_nullable
 as bool,exception: freezed == exception ? _self.exception : exception // ignore: cast_nullable_to_non_nullable
 as Exception?,
@@ -167,10 +168,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool initialized,  PlatformFile? selectedFile,  TranscriptionSource? transcriptionSource,  bool processingFile,  bool extractingAudio,  Exception? exception)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool initialized,  PlatformFile? selectedFile,  TranscriptionSource? transcriptionSource,  bool pickingFile,  bool processingFile,  bool extractingAudio,  Exception? exception)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomeVmState() when $default != null:
-return $default(_that.initialized,_that.selectedFile,_that.transcriptionSource,_that.processingFile,_that.extractingAudio,_that.exception);case _:
+return $default(_that.initialized,_that.selectedFile,_that.transcriptionSource,_that.pickingFile,_that.processingFile,_that.extractingAudio,_that.exception);case _:
   return orElse();
 
 }
@@ -188,10 +189,10 @@ return $default(_that.initialized,_that.selectedFile,_that.transcriptionSource,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool initialized,  PlatformFile? selectedFile,  TranscriptionSource? transcriptionSource,  bool processingFile,  bool extractingAudio,  Exception? exception)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool initialized,  PlatformFile? selectedFile,  TranscriptionSource? transcriptionSource,  bool pickingFile,  bool processingFile,  bool extractingAudio,  Exception? exception)  $default,) {final _that = this;
 switch (_that) {
 case _HomeVmState():
-return $default(_that.initialized,_that.selectedFile,_that.transcriptionSource,_that.processingFile,_that.extractingAudio,_that.exception);case _:
+return $default(_that.initialized,_that.selectedFile,_that.transcriptionSource,_that.pickingFile,_that.processingFile,_that.extractingAudio,_that.exception);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -208,10 +209,10 @@ return $default(_that.initialized,_that.selectedFile,_that.transcriptionSource,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool initialized,  PlatformFile? selectedFile,  TranscriptionSource? transcriptionSource,  bool processingFile,  bool extractingAudio,  Exception? exception)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool initialized,  PlatformFile? selectedFile,  TranscriptionSource? transcriptionSource,  bool pickingFile,  bool processingFile,  bool extractingAudio,  Exception? exception)?  $default,) {final _that = this;
 switch (_that) {
 case _HomeVmState() when $default != null:
-return $default(_that.initialized,_that.selectedFile,_that.transcriptionSource,_that.processingFile,_that.extractingAudio,_that.exception);case _:
+return $default(_that.initialized,_that.selectedFile,_that.transcriptionSource,_that.pickingFile,_that.processingFile,_that.extractingAudio,_that.exception);case _:
   return null;
 
 }
@@ -223,12 +224,13 @@ return $default(_that.initialized,_that.selectedFile,_that.transcriptionSource,_
 
 
 class _HomeVmState implements HomeVmState {
-   _HomeVmState({this.initialized = false, this.selectedFile, this.transcriptionSource, this.processingFile = false, this.extractingAudio = false, this.exception});
+   _HomeVmState({this.initialized = false, this.selectedFile, this.transcriptionSource, this.pickingFile = false, this.processingFile = false, this.extractingAudio = false, this.exception});
   
 
 @override@JsonKey() final  bool initialized;
 @override final  PlatformFile? selectedFile;
 @override final  TranscriptionSource? transcriptionSource;
+@override@JsonKey() final  bool pickingFile;
 @override@JsonKey() final  bool processingFile;
 @override@JsonKey() final  bool extractingAudio;
 @override final  Exception? exception;
@@ -243,16 +245,16 @@ _$HomeVmStateCopyWith<_HomeVmState> get copyWith => __$HomeVmStateCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeVmState&&(identical(other.initialized, initialized) || other.initialized == initialized)&&(identical(other.selectedFile, selectedFile) || other.selectedFile == selectedFile)&&(identical(other.transcriptionSource, transcriptionSource) || other.transcriptionSource == transcriptionSource)&&(identical(other.processingFile, processingFile) || other.processingFile == processingFile)&&(identical(other.extractingAudio, extractingAudio) || other.extractingAudio == extractingAudio)&&(identical(other.exception, exception) || other.exception == exception));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeVmState&&(identical(other.initialized, initialized) || other.initialized == initialized)&&(identical(other.selectedFile, selectedFile) || other.selectedFile == selectedFile)&&(identical(other.transcriptionSource, transcriptionSource) || other.transcriptionSource == transcriptionSource)&&(identical(other.pickingFile, pickingFile) || other.pickingFile == pickingFile)&&(identical(other.processingFile, processingFile) || other.processingFile == processingFile)&&(identical(other.extractingAudio, extractingAudio) || other.extractingAudio == extractingAudio)&&(identical(other.exception, exception) || other.exception == exception));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,initialized,selectedFile,transcriptionSource,processingFile,extractingAudio,exception);
+int get hashCode => Object.hash(runtimeType,initialized,selectedFile,transcriptionSource,pickingFile,processingFile,extractingAudio,exception);
 
 @override
 String toString() {
-  return 'HomeVmState(initialized: $initialized, selectedFile: $selectedFile, transcriptionSource: $transcriptionSource, processingFile: $processingFile, extractingAudio: $extractingAudio, exception: $exception)';
+  return 'HomeVmState(initialized: $initialized, selectedFile: $selectedFile, transcriptionSource: $transcriptionSource, pickingFile: $pickingFile, processingFile: $processingFile, extractingAudio: $extractingAudio, exception: $exception)';
 }
 
 
@@ -263,7 +265,7 @@ abstract mixin class _$HomeVmStateCopyWith<$Res> implements $HomeVmStateCopyWith
   factory _$HomeVmStateCopyWith(_HomeVmState value, $Res Function(_HomeVmState) _then) = __$HomeVmStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool initialized, PlatformFile? selectedFile, TranscriptionSource? transcriptionSource, bool processingFile, bool extractingAudio, Exception? exception
+ bool initialized, PlatformFile? selectedFile, TranscriptionSource? transcriptionSource, bool pickingFile, bool processingFile, bool extractingAudio, Exception? exception
 });
 
 
@@ -280,12 +282,13 @@ class __$HomeVmStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeVmState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? initialized = null,Object? selectedFile = freezed,Object? transcriptionSource = freezed,Object? processingFile = null,Object? extractingAudio = null,Object? exception = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? initialized = null,Object? selectedFile = freezed,Object? transcriptionSource = freezed,Object? pickingFile = null,Object? processingFile = null,Object? extractingAudio = null,Object? exception = freezed,}) {
   return _then(_HomeVmState(
 initialized: null == initialized ? _self.initialized : initialized // ignore: cast_nullable_to_non_nullable
 as bool,selectedFile: freezed == selectedFile ? _self.selectedFile : selectedFile // ignore: cast_nullable_to_non_nullable
 as PlatformFile?,transcriptionSource: freezed == transcriptionSource ? _self.transcriptionSource : transcriptionSource // ignore: cast_nullable_to_non_nullable
-as TranscriptionSource?,processingFile: null == processingFile ? _self.processingFile : processingFile // ignore: cast_nullable_to_non_nullable
+as TranscriptionSource?,pickingFile: null == pickingFile ? _self.pickingFile : pickingFile // ignore: cast_nullable_to_non_nullable
+as bool,processingFile: null == processingFile ? _self.processingFile : processingFile // ignore: cast_nullable_to_non_nullable
 as bool,extractingAudio: null == extractingAudio ? _self.extractingAudio : extractingAudio // ignore: cast_nullable_to_non_nullable
 as bool,exception: freezed == exception ? _self.exception : exception // ignore: cast_nullable_to_non_nullable
 as Exception?,

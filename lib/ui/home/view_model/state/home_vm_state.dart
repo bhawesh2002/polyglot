@@ -10,6 +10,7 @@ abstract class HomeVmState with _$HomeVmState {
     @Default(false) bool initialized,
     PlatformFile? selectedFile,
     TranscriptionSource? transcriptionSource,
+    @Default(false) bool pickingFile,
     @Default(false) bool processingFile,
     @Default(false) bool extractingAudio,
     Exception? exception,
