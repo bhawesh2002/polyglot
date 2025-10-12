@@ -12,7 +12,7 @@ extension DeviceMetrics on BuildContext {
   bool get isDarkMode =>
       MediaQuery.of(this).platformBrightness == Brightness.dark;
   EdgeInsets get devicePadding =>
-      EdgeInsets.only(top: viewPaddingBottom, bottom: viewPaddingTop);
+      EdgeInsets.only(top: viewPaddingTop, bottom: viewPaddingBottom);
   EdgeInsets get devicePaddingTop => EdgeInsets.only(top: viewPaddingTop);
   EdgeInsets get devicePaddingBottom =>
       EdgeInsets.only(bottom: viewPaddingBottom);
