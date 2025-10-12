@@ -72,7 +72,9 @@ class TranscriptionSourceAdapter extends TypeAdapter<TranscriptionSource> {
       startTime: fields[6] == null ? Duration.zero : fields[6] as Duration,
       formatLong: fields[7] as String?,
       tags: (fields[8] as Map?)?.cast<String, dynamic>(),
-      streams: fields[9] == null ? [] : (fields[9] as List).cast<MediaStream>(),
+      streams: fields[9] == null
+          ? const []
+          : (fields[9] as List).cast<MediaStream>(),
       bitrate: (fields[10] as num?)?.toDouble(),
       size: (fields[11] as num?)?.toInt(),
       metadata: (fields[12] as Map).cast<String, dynamic>(),
