@@ -52,7 +52,7 @@ class AudioExtractionRepository {
     return null;
   }
 
-  Future<TranscriptionSource?> extractAudio(
+  Future<TranscriptionSource> extractAudio(
     TranscriptionSource source, {
     int? streamIndex,
   }) async {
