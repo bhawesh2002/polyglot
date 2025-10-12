@@ -19,6 +19,22 @@ class _HomeViewState extends ConsumerState<HomeView> {
   Widget build(BuildContext context) {
     final viewModel = ref.watch(homeVmProvider);
     final vmNotifier = ref.read(homeVmProvider.notifier);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (viewModel.exception != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            duration: const Duration(seconds: 2),
+            dismissDirection: DismissDirection.down,
+            backgroundColor: Colors.redAccent.shade200,
+            content: Text(
+              "Error: ${viewModel.exception}",
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22),
+            ),
+          ),
+        );
+        vmNotifier.clearException();
+      }
+    });
 
     return Scaffold(
       body: Padding(
@@ -53,11 +69,42 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     ],
                   ),
                   kVSpacing20,
-                  Text(
-                    viewModel.selectedFile != null
-                        ? viewModel.selectedFile!.name
-                        : "Select a file",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                  if (viewModel.selectedFile != null)
+                    Text(
+                      viewModel.selectedFile!.name,
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  kVSpacing10,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (viewModel.selectedFile == null)
+                        Text(
+                          viewModel.pickingFile
+                              ? "Selecting File"
+                              : "Select a file",
+                          softWrap: true,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      if (viewModel.pickingFile)
+                        Padding(
+                          padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
+                          child: SizedBox.square(
+                            dimension: 20,
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                    ],
                   ),
 
                   if (viewModel.selectedFile != null &&
@@ -101,20 +148,19 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       padding: const EdgeInsets.symmetric(vertical: 18.0),
                       child: TextButton(
                         onPressed: () async {
-                          int? selectedIndex;
-
                           if (vmNotifier.audioStreams != null &&
                               vmNotifier.audioStreams!.isNotEmpty) {
+                            int? selectedIndex;
                             selectedIndex = await showDialog(
                               context: context,
                               builder: (context) => AudioStreamSelector(
                                 audioStreams: vmNotifier.audioStreams!,
                               ),
                             );
+                            await vmNotifier.beginAudioExtraction(
+                              streamIndex: selectedIndex,
+                            );
                           }
-                          await vmNotifier.beginAudioExtraction(
-                            streamIndex: selectedIndex,
-                          );
                         },
 
                         child: Padding(
@@ -245,29 +291,33 @@ class _AudioStreamSelectorState extends State<AudioStreamSelector> {
                 children: [
                   ...List.generate(audioStreams.length, (index) {
                     final audioStream = audioStreams[index];
-                    return ListTile(
-                      leading: Icon(Icons.music_note),
-                      title: Text(
-                        "${audioStream.codecLong} (${audioStream.codec})",
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListTile(
+                        leading: Icon(Icons.music_note),
+
+                        title: Text(
+                          "${audioStream.codecLong} (${audioStream.codec})",
+                        ),
+                        shape: index == selected
+                            ? OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(
+                                  width: 2,
+                                  color: Colors.blueAccent,
+                                ),
+                              )
+                            : null,
+                        subtitle: Text(
+                          "Bitrate: ${audioStream.bitrate} Channels: ${audioStream.channels}\n${audioStream.tags!.values.toList()}",
+                        ),
+                        isThreeLine: true,
+                        onTap: () {
+                          setState(() {
+                            selected = index;
+                          });
+                        },
                       ),
-                      shape: index == selected
-                          ? OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(
-                                width: 1,
-                                color: Colors.blueAccent,
-                              ),
-                            )
-                          : null,
-                      subtitle: Text(
-                        "Bitrate: ${audioStream.bitrate} Channels: ${audioStream.channels}\n${audioStream.tags!.values.toList()}",
-                      ),
-                      isThreeLine: true,
-                      onTap: () {
-                        setState(() {
-                          selected = index;
-                        });
-                      },
                     );
                   }),
                 ],
