@@ -32,17 +32,21 @@ class HomeVm extends _$HomeVm {
 
   Future<void> pickFile({bool isAudio = false}) async {
     try {
+      state = state.copyWith(selectedFile: null, pickingFile: true);
       final media = await _audioExtractionRepository.pickMedia(
         isAudio: isAudio,
       );
       state = state.copyWith(
         selectedFile: media,
+        pickingFile: false,
         transcriptionSource: null,
         processingFile: false,
+        extractingAudio: false,
       );
     } on MediaFileNotFound {
       _logger.info("User didn't select any files");
     } catch (e, stack) {
+      state = state.copyWith(selectedFile: null, pickingFile: false);
       _handleError("pickAudio(): Unable to pick audio", e, stack);
     }
   }
@@ -96,4 +100,6 @@ class HomeVm extends _$HomeVm {
     }
     throw e;
   }
+
+  void clearException() => state = state.copyWith(exception: null);
 }
