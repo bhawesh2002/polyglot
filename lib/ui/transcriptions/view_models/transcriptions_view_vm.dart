@@ -80,6 +80,22 @@ class TranscriptionsViewVm extends _$TranscriptionsViewVm {
     }
   }
 
+  Future<bool> deleteTranscriptionSource(TranscriptionSource source) async {
+    if (state.activeTranscriptionSrcIndex != null) return false;
+    try {
+      state = state.copyWith(
+        activeTranscriptionSrcIndex: state.orphanSources.indexOf(source),
+      );
+      await source.deleteMe();
+      state = state.copyWith(activeTranscriptionSrcIndex: null);
+    } catch (e, stack) {
+      state = state.copyWith(activeTranscriptionSrcIndex: null);
+
+      _handleError("transcribe(): error while transcribing", e, stack);
+    }
+    return true;
+  }
+
   void _handleError(String message, Object e, StackTrace stack) {
     _logger.severe(message, e, stack);
     if (e is Exception) {
