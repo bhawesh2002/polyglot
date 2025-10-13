@@ -11,14 +11,14 @@ final storageRepositoryProvier = Provider(
   ),
 );
 
-final transcriptionService = Provider(
+final transcriptionRepositoryProvider = Provider(
   (ref) => TranscriptionRepository(
     transcriptionService: ref.watch(transcriptionServiceProvider),
     translationService: ref.watch(translationServiceProvider),
   ),
 );
 
-final audioExtractionRepository = Provider(
+final audioExtractionRepositoryProvider = Provider(
   (ref) => AudioExtractionRepository(
     ffmpegService: ref.watch(ffmpegServiceProvider),
     mediaPickerService: ref.watch(mediaPickerServiceProvider),

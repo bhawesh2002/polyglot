@@ -13,7 +13,7 @@ part 'home_vm.g.dart';
 class HomeVm extends _$HomeVm {
   @override
   HomeVmState build() {
-    _audioExtractionRepository = ref.watch(audioExtractionRepository);
+    _audioExtractionRepository = ref.watch(audioExtractionRepositoryProvider);
     initialize();
     return state;
   }
