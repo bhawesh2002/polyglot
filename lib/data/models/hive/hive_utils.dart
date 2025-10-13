@@ -1,13 +1,18 @@
+import 'dart:collection';
+
 import 'package:hive_ce_flutter/adapters.dart';
 import 'package:polyglot/data/models/transcription.dart';
 import 'package:polyglot/data/models/transcription_source.dart';
 
-class HiveUtils {
+abstract class HiveUtils {
   static const transcriptionBoxName = 'transcriptionBox';
   static const transcriptionSourceBoxName = 'transcriptionSourceBox';
 
   static bool _boxesOpened = false;
   static bool get boxesOpened => _boxesOpened;
+
+  static final Map<Type, Box> _openedBoxMap = HashMap();
+  static Map<Type, Box> get openedBoxMap => _openedBoxMap;
 
   static Box<Transcription> get transcriptionBox =>
       Hive.box<Transcription>(transcriptionBoxName);
@@ -16,8 +21,35 @@ class HiveUtils {
 
   static Future<void> openBoxes({force = false}) async {
     if (_boxesOpened && !force) return;
-    await Hive.openBox<Transcription>(transcriptionBoxName);
-    await Hive.openBox<TranscriptionSource>(transcriptionSourceBoxName);
+    final box1 = await Hive.openBox<Transcription>(transcriptionBoxName);
+    _openedBoxMap[Transcription] = box1;
+    final box2 = await Hive.openBox<TranscriptionSource>(
+      transcriptionSourceBoxName,
+    );
+    _openedBoxMap[TranscriptionSource] = box2;
+
     _boxesOpened = true;
+  }
+
+  static Box<T> getBox<T>() {
+    return _openedBoxMap[T] as Box<T>;
+  }
+
+  Future<void> store<T>(obj, String key) async {
+    if (!HiveUtils.openedBoxMap.containsKey(T)) {
+      await HiveUtils.openBoxes();
+    }
+
+    final box = HiveUtils.getBox<T>();
+    await box.put(obj.id, obj);
+  }
+
+  Future<void> delete<T>({String? id}) async {
+    if (!HiveUtils.openedBoxMap.containsKey(T)) {
+      await HiveUtils.openBoxes();
+    }
+
+    final box = HiveUtils.getBox<T>();
+    await box.delete(id);
   }
 }
