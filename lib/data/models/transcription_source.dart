@@ -27,6 +27,7 @@ class TranscriptionSource extends HiveUtils with _$TranscriptionSource {
     this.bitrate,
     this.size,
     this.metadata,
+    this.transctiptionId,
   );
 
   factory TranscriptionSource.create({
@@ -58,6 +59,7 @@ class TranscriptionSource extends HiveUtils with _$TranscriptionSource {
     bitrate,
     size,
     metadata,
+    null,
   );
 
   @override
@@ -99,6 +101,9 @@ class TranscriptionSource extends HiveUtils with _$TranscriptionSource {
   final int? size;
   @override
   final Map<String, dynamic> metadata;
+
+  @override
+  final String? transctiptionId;
 
   factory TranscriptionSource.fromJson(Map<String, dynamic> json) =>
       _$TranscriptionSourceFromJson(json);

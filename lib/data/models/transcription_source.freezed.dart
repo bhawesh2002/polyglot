@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TranscriptionSource {
 
- String get id; TranscriptionSourceType get type; String get name; String get path; String? get extractedAudioPath; Duration get duration; String get format; Duration get startTime; String? get formatLong; Map<String, dynamic>? get tags; List<MediaStream> get streams; double? get bitrate; int? get size; Map<String, dynamic> get metadata;
+ String get id; TranscriptionSourceType get type; String get name; String get path; String? get extractedAudioPath; Duration get duration; String get format; Duration get startTime; String? get formatLong; Map<String, dynamic>? get tags; List<MediaStream> get streams; double? get bitrate; int? get size; Map<String, dynamic> get metadata; String? get transctiptionId;
 /// Create a copy of TranscriptionSource
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $TranscriptionSourceCopyWith<TranscriptionSource> get copyWith => _$Transcriptio
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TranscriptionSource&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.path, path) || other.path == path)&&(identical(other.extractedAudioPath, extractedAudioPath) || other.extractedAudioPath == extractedAudioPath)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.format, format) || other.format == format)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.formatLong, formatLong) || other.formatLong == formatLong)&&const DeepCollectionEquality().equals(other.tags, tags)&&const DeepCollectionEquality().equals(other.streams, streams)&&(identical(other.bitrate, bitrate) || other.bitrate == bitrate)&&(identical(other.size, size) || other.size == size)&&const DeepCollectionEquality().equals(other.metadata, metadata));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TranscriptionSource&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.path, path) || other.path == path)&&(identical(other.extractedAudioPath, extractedAudioPath) || other.extractedAudioPath == extractedAudioPath)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.format, format) || other.format == format)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.formatLong, formatLong) || other.formatLong == formatLong)&&const DeepCollectionEquality().equals(other.tags, tags)&&const DeepCollectionEquality().equals(other.streams, streams)&&(identical(other.bitrate, bitrate) || other.bitrate == bitrate)&&(identical(other.size, size) || other.size == size)&&const DeepCollectionEquality().equals(other.metadata, metadata)&&(identical(other.transctiptionId, transctiptionId) || other.transctiptionId == transctiptionId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,type,name,path,extractedAudioPath,duration,format,startTime,formatLong,const DeepCollectionEquality().hash(tags),const DeepCollectionEquality().hash(streams),bitrate,size,const DeepCollectionEquality().hash(metadata));
+int get hashCode => Object.hash(runtimeType,id,type,name,path,extractedAudioPath,duration,format,startTime,formatLong,const DeepCollectionEquality().hash(tags),const DeepCollectionEquality().hash(streams),bitrate,size,const DeepCollectionEquality().hash(metadata),transctiptionId);
 
 @override
 String toString() {
-  return 'TranscriptionSource(id: $id, type: $type, name: $name, path: $path, extractedAudioPath: $extractedAudioPath, duration: $duration, format: $format, startTime: $startTime, formatLong: $formatLong, tags: $tags, streams: $streams, bitrate: $bitrate, size: $size, metadata: $metadata)';
+  return 'TranscriptionSource(id: $id, type: $type, name: $name, path: $path, extractedAudioPath: $extractedAudioPath, duration: $duration, format: $format, startTime: $startTime, formatLong: $formatLong, tags: $tags, streams: $streams, bitrate: $bitrate, size: $size, metadata: $metadata, transctiptionId: $transctiptionId)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $TranscriptionSourceCopyWith<$Res>  {
   factory $TranscriptionSourceCopyWith(TranscriptionSource value, $Res Function(TranscriptionSource) _then) = _$TranscriptionSourceCopyWithImpl;
 @useResult
 $Res call({
- String id, TranscriptionSourceType type, String name, String path, String? extractedAudioPath, Duration duration, String format, Duration startTime, String? formatLong, Map<String, dynamic>? tags, List<MediaStream> streams, double? bitrate, int? size, Map<String, dynamic> metadata
+ String id, TranscriptionSourceType type, String name, String path, String? extractedAudioPath, Duration duration, String format, Duration startTime, String? formatLong, Map<String, dynamic>? tags, List<MediaStream> streams, double? bitrate, int? size, Map<String, dynamic> metadata, String? transctiptionId
 });
 
 
@@ -63,7 +63,7 @@ class _$TranscriptionSourceCopyWithImpl<$Res>
 
 /// Create a copy of TranscriptionSource
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? type = null,Object? name = null,Object? path = null,Object? extractedAudioPath = freezed,Object? duration = null,Object? format = null,Object? startTime = null,Object? formatLong = freezed,Object? tags = freezed,Object? streams = null,Object? bitrate = freezed,Object? size = freezed,Object? metadata = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? type = null,Object? name = null,Object? path = null,Object? extractedAudioPath = freezed,Object? duration = null,Object? format = null,Object? startTime = null,Object? formatLong = freezed,Object? tags = freezed,Object? streams = null,Object? bitrate = freezed,Object? size = freezed,Object? metadata = null,Object? transctiptionId = freezed,}) {
   return _then(TranscriptionSource(
 null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
@@ -79,7 +79,8 @@ as Map<String, dynamic>?,null == streams ? _self.streams : streams // ignore: ca
 as List<MediaStream>,freezed == bitrate ? _self.bitrate : bitrate // ignore: cast_nullable_to_non_nullable
 as double?,freezed == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
 as int?,null == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>,
+as Map<String, dynamic>,freezed == transctiptionId ? _self.transctiptionId : transctiptionId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

@@ -77,13 +77,14 @@ class TranscriptionSourceAdapter extends TypeAdapter<TranscriptionSource> {
       (fields[11] as num?)?.toDouble(),
       (fields[12] as num?)?.toInt(),
       (fields[13] as Map).cast<String, dynamic>(),
+      fields[15] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, TranscriptionSource obj) {
     writer
-      ..writeByte(14)
+      ..writeByte(15)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -111,7 +112,9 @@ class TranscriptionSourceAdapter extends TypeAdapter<TranscriptionSource> {
       ..writeByte(12)
       ..write(obj.size)
       ..writeByte(13)
-      ..write(obj.metadata);
+      ..write(obj.metadata)
+      ..writeByte(15)
+      ..write(obj.transctiptionId);
   }
 
   @override

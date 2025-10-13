@@ -19,7 +19,7 @@ types:
         index: 4
   TranscriptionSource:
     typeId: 1
-    nextIndex: 14
+    nextIndex: 16
     fields:
       id:
         index: 0
@@ -49,6 +49,8 @@ types:
         index: 12
       metadata:
         index: 13
+      transctiptionId:
+        index: 15
   TranscriptionSourceType:
     typeId: 2
     nextIndex: 2

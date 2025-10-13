@@ -24,6 +24,7 @@ TranscriptionSource _$TranscriptionSourceFromJson(Map<String, dynamic> json) =>
       (json['bitrate'] as num?)?.toDouble(),
       (json['size'] as num?)?.toInt(),
       json['metadata'] as Map<String, dynamic>,
+      json['transctiptionId'] as String?,
     );
 
 Map<String, dynamic> _$TranscriptionSourceToJson(
@@ -43,6 +44,7 @@ Map<String, dynamic> _$TranscriptionSourceToJson(
   'bitrate': instance.bitrate,
   'size': instance.size,
   'metadata': instance.metadata,
+  'transctiptionId': instance.transctiptionId,
 };
 
 const _$TranscriptionSourceTypeEnumMap = {
