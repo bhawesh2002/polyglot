@@ -19,34 +19,36 @@ types:
         index: 4
   TranscriptionSource:
     typeId: 1
-    nextIndex: 13
+    nextIndex: 14
     fields:
-      type:
+      id:
         index: 0
-      name:
+      type:
         index: 1
-      path:
+      name:
         index: 2
-      extractedAudioPath:
+      path:
         index: 3
-      duration:
+      extractedAudioPath:
         index: 4
-      format:
+      duration:
         index: 5
-      startTime:
+      format:
         index: 6
-      formatLong:
+      startTime:
         index: 7
-      tags:
+      formatLong:
         index: 8
-      streams:
+      tags:
         index: 9
-      bitrate:
+      streams:
         index: 10
-      size:
+      bitrate:
         index: 11
-      metadata:
+      size:
         index: 12
+      metadata:
+        index: 13
   TranscriptionSourceType:
     typeId: 2
     nextIndex: 2

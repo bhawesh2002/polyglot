@@ -17,11 +17,11 @@ class TranscriptionAdapter extends TypeAdapter<Transcription> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Transcription(
-      id: (fields[0] as num).toInt(),
-      name: fields[1] as String,
-      source: fields[2] as TranscriptionSource,
-      transcription: (fields[3] as Map?)?.cast<String, dynamic>(),
-      translation: (fields[4] as List?)?.cast<Translation>(),
+      fields[0] as String,
+      fields[1] as String,
+      fields[2] as TranscriptionSource,
+      (fields[3] as Map?)?.cast<String, dynamic>(),
+      (fields[4] as List?)?.cast<Translation>(),
     );
   }
 
@@ -63,53 +63,54 @@ class TranscriptionSourceAdapter extends TypeAdapter<TranscriptionSource> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TranscriptionSource(
-      type: fields[0] as TranscriptionSourceType,
-      name: fields[1] as String,
-      path: fields[2] as String,
-      extractedAudioPath: fields[3] as String?,
-      duration: fields[4] as Duration,
-      format: fields[5] as String,
-      startTime: fields[6] == null ? Duration.zero : fields[6] as Duration,
-      formatLong: fields[7] as String?,
-      tags: (fields[8] as Map?)?.cast<String, dynamic>(),
-      streams: fields[9] == null
-          ? const []
-          : (fields[9] as List).cast<MediaStream>(),
-      bitrate: (fields[10] as num?)?.toDouble(),
-      size: (fields[11] as num?)?.toInt(),
-      metadata: (fields[12] as Map).cast<String, dynamic>(),
+      fields[0] as String,
+      fields[1] as TranscriptionSourceType,
+      fields[2] as String,
+      fields[3] as String,
+      fields[4] as String?,
+      fields[5] as Duration,
+      fields[6] as String,
+      fields[7] as Duration,
+      fields[8] as String?,
+      (fields[9] as Map?)?.cast<String, dynamic>(),
+      (fields[10] as List).cast<MediaStream>(),
+      (fields[11] as num?)?.toDouble(),
+      (fields[12] as num?)?.toInt(),
+      (fields[13] as Map).cast<String, dynamic>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, TranscriptionSource obj) {
     writer
-      ..writeByte(13)
+      ..writeByte(14)
       ..writeByte(0)
-      ..write(obj.type)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.name)
+      ..write(obj.type)
       ..writeByte(2)
-      ..write(obj.path)
+      ..write(obj.name)
       ..writeByte(3)
-      ..write(obj.extractedAudioPath)
+      ..write(obj.path)
       ..writeByte(4)
-      ..write(obj.duration)
+      ..write(obj.extractedAudioPath)
       ..writeByte(5)
-      ..write(obj.format)
+      ..write(obj.duration)
       ..writeByte(6)
-      ..write(obj.startTime)
+      ..write(obj.format)
       ..writeByte(7)
-      ..write(obj.formatLong)
+      ..write(obj.startTime)
       ..writeByte(8)
-      ..write(obj.tags)
+      ..write(obj.formatLong)
       ..writeByte(9)
-      ..write(obj.streams)
+      ..write(obj.tags)
       ..writeByte(10)
-      ..write(obj.bitrate)
+      ..write(obj.streams)
       ..writeByte(11)
-      ..write(obj.size)
+      ..write(obj.bitrate)
       ..writeByte(12)
+      ..write(obj.size)
+      ..writeByte(13)
       ..write(obj.metadata);
   }
 
