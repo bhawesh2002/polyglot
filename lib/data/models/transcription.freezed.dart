@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Transcription {
 
- int get id; String get name; TranscriptionSource get source; Map<String, dynamic>? get transcription; List<Translation>? get translation;
+ String get id; String get name; TranscriptionSource get source; Map<String, dynamic>? get transcription; List<Translation>? get translation;
 /// Create a copy of Transcription
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46,7 +46,7 @@ abstract mixin class $TranscriptionCopyWith<$Res>  {
   factory $TranscriptionCopyWith(Transcription value, $Res Function(Transcription) _then) = _$TranscriptionCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, TranscriptionSource source, Map<String, dynamic>? transcription, List<Translation>? translation
+ String id, String name, TranscriptionSource source, Map<String, dynamic>? transcription, List<Translation>? translation
 });
 
 
@@ -65,11 +65,11 @@ class _$TranscriptionCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? source = null,Object? transcription = freezed,Object? translation = freezed,}) {
   return _then(Transcription(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as TranscriptionSource,transcription: freezed == transcription ? _self.transcription : transcription // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,translation: freezed == translation ? _self.translation : translation // ignore: cast_nullable_to_non_nullable
+null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as TranscriptionSource,freezed == transcription ? _self.transcription : transcription // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>?,freezed == translation ? _self.translation : translation // ignore: cast_nullable_to_non_nullable
 as List<Translation>?,
   ));
 }

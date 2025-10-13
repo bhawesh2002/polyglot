@@ -1,34 +1,67 @@
 import 'package:ffmpeg_kit_flutter_new/media_information.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive_ce_flutter/adapters.dart';
 
 import 'package:polyglot/data/models/converters/duration_converter.dart';
+import 'package:polyglot/data/models/hive/hive_utils.dart';
 import 'package:polyglot/data/models/media_stream.dart';
 import 'package:polyglot/utils/enums.dart';
-
+import 'package:uuid/uuid.dart';
 part 'transcription_source.freezed.dart';
 part 'transcription_source.g.dart';
 
 @freezed
 @JsonSerializable()
-class TranscriptionSource extends HiveObject with _$TranscriptionSource {
-  TranscriptionSource({
-    required this.type,
-    required this.name,
-    required this.path,
+class TranscriptionSource extends HiveUtils with _$TranscriptionSource {
+  TranscriptionSource(
+    this.id,
+    this.type,
+    this.name,
+    this.path,
     this.extractedAudioPath,
-
-    required this.duration,
-    required this.format,
-    this.startTime = Duration.zero,
+    this.duration,
+    this.format,
+    this.startTime,
     this.formatLong,
     this.tags,
-    this.streams = const [],
+    this.streams,
     this.bitrate,
     this.size,
-    required this.metadata,
-  });
+    this.metadata,
+  );
 
+  factory TranscriptionSource.create({
+    required TranscriptionSourceType type,
+    required String name,
+    required String path,
+    String? extractedAudioPath,
+    required Duration duration,
+    required String format,
+    Duration startTime = Duration.zero,
+    String? formatLong,
+    Map<String, dynamic>? tags,
+    List<MediaStream> streams = const [],
+    double? bitrate,
+    int? size,
+    required Map<String, dynamic> metadata,
+  }) => TranscriptionSource(
+    Uuid().v4(),
+    type,
+    name,
+    path,
+    extractedAudioPath,
+    duration,
+    format,
+    startTime,
+    formatLong,
+    tags,
+    streams,
+    bitrate,
+    size,
+    metadata,
+  );
+
+  @override
+  final String id;
   @override
   final TranscriptionSourceType type;
   @override
@@ -170,7 +203,7 @@ class TranscriptionSource extends HiveObject with _$TranscriptionSource {
           s.codecType.toString().toLowerCase() == 'video';
     });
 
-    return TranscriptionSource(
+    return TranscriptionSource.create(
       type: hasVideo
           ? TranscriptionSourceType.video
           : TranscriptionSourceType.audio,
@@ -186,6 +219,14 @@ class TranscriptionSource extends HiveObject with _$TranscriptionSource {
       size: int.tryParse(info.getSize() ?? ''),
       metadata: metadata,
     );
+  }
+
+  Future<void> storeMe() async {
+    return await super.store<TranscriptionSource>(this, id);
+  }
+
+  Future<void> deleteMe() async {
+    return await super.delete<TranscriptionSource>(id: id);
   }
 }
 

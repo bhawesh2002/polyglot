@@ -8,13 +8,11 @@ part of 'transcription.dart';
 
 Transcription _$TranscriptionFromJson(Map<String, dynamic> json) =>
     Transcription(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-      source: TranscriptionSource.fromJson(
-        json['source'] as Map<String, dynamic>,
-      ),
-      transcription: json['transcription'] as Map<String, dynamic>?,
-      translation: (json['translation'] as List<dynamic>?)
+      json['id'] as String,
+      json['name'] as String,
+      TranscriptionSource.fromJson(json['source'] as Map<String, dynamic>),
+      json['transcription'] as Map<String, dynamic>?,
+      (json['translation'] as List<dynamic>?)
           ?.map((e) => Translation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
