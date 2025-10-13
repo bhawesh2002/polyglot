@@ -1,4 +1,5 @@
 import 'package:logging/logging.dart';
+import 'package:polyglot/data/models/hive/hive_utils.dart';
 import 'package:polyglot/data/models/transcription.dart';
 import 'package:polyglot/data/models/transcription_source.dart';
 import 'package:polyglot/data/models/translation.dart';
@@ -23,6 +24,7 @@ class TranscriptionRepository {
   Future<void> initialize() async {
     try {
       if (initialized) return;
+      await HiveUtils.openBoxes();
       _initialized = true;
     } catch (e, stack) {
       _logger.severe(
@@ -47,29 +49,16 @@ class TranscriptionRepository {
     return null;
   }
 
-  Future<List<Transcription>> listTranscriptions() async {
+  Future<Transcription?> getTranscription(String id) async {
     try {
-      final transctiptions = <Transcription>[];
-      return transctiptions;
+      return HiveUtils.transcriptionBox.get(id);
     } catch (e, stack) {
       _logger.severe(
-        "listTranscriptions(): Error while listing transcriptions",
+        "getTranscription(): Error while getting transcription by $id",
         e,
         stack,
       );
       rethrow;
     }
-  }
-
-  Future<Transcription?> getTranscription(int id) async {
-    try {} catch (e, stack) {
-      _logger.severe(
-        "getTranscription(): Error while listing transcriptions",
-        e,
-        stack,
-      );
-      rethrow;
-    }
-    return null;
   }
 }
