@@ -5,7 +5,6 @@ import 'package:polyglot/data/models/transcription_source.dart';
 import 'package:polyglot/data/services/ffmpeg_service.dart';
 import 'package:polyglot/data/services/media_picker_service.dart';
 import 'package:polyglot/data/services/storage_service.dart';
-import 'package:polyglot/data/models/hive/hive_utils.dart';
 import 'package:polyglot/utils/exceptions.dart';
 
 class AudioExtractionRepository {
@@ -42,7 +41,7 @@ class AudioExtractionRepository {
       TranscriptionSource? source;
       if (info != null) {
         source = TranscriptionSource.fromMediaInformation(info);
-        await HiveUtils.transcriptionSourceBox.add(source);
+        source.storeMe();
       }
       _logger.info('TranscriptionSource : ${source?.type}');
       return source;
@@ -68,7 +67,7 @@ class AudioExtractionRepository {
     );
     if (result) {
       source = source.copyWith(extractedAudioPath: opPath);
-      await source.save();
+      source.storeMe();
     }
     return source;
   }
