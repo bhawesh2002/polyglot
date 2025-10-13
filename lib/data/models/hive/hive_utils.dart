@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:flutter/foundation.dart';
 import 'package:hive_ce_flutter/adapters.dart';
 import 'package:polyglot/data/models/transcription.dart';
 import 'package:polyglot/data/models/transcription_source.dart';
@@ -31,30 +32,23 @@ abstract class HiveUtils {
     _boxesOpened = true;
   }
 
-  static Box<T> getBox<T>() {
+  static Box<T>? getBox<T>() {
+    if (!_openedBoxMap.containsKey(T)) return null;
     return _openedBoxMap[T] as Box<T>;
   }
 
   /// specify [keys] to listen to specific value(s)
   /// stored in the box
-  static getBoxListener<T>({List<String>? keys}) =>
-      HiveUtils.getBox<T>().listenable(keys: keys);
+  static ValueListenable<Box<T>>? getBoxListener<T>({List<String>? keys}) =>
+      HiveUtils.getBox<T>()?.listenable(keys: keys);
 
   Future<void> store<T>(obj, String key) async {
-    if (!HiveUtils.openedBoxMap.containsKey(T)) {
-      await HiveUtils.openBoxes(force: true);
-    }
-
     final box = HiveUtils.getBox<T>();
-    await box.put(obj.id, obj);
+    await box?.put(obj.id, obj);
   }
 
   Future<void> delete<T>({String? id}) async {
-    if (!HiveUtils.openedBoxMap.containsKey(T)) {
-      await HiveUtils.openBoxes(force: true);
-    }
-
     final box = HiveUtils.getBox<T>();
-    await box.delete(id);
+    await box?.delete(id);
   }
 }
