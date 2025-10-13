@@ -5,6 +5,7 @@ import 'package:polyglot/routing/app_routes.dart';
 import 'package:polyglot/ui/auth/views/auth_view.dart';
 import 'package:polyglot/ui/home/views/home_view.dart';
 import 'package:polyglot/ui/splash/views/splash_view.dart';
+import 'package:polyglot/ui/transcriptions/views/transcriptions_view.dart';
 
 final appRouterProvider = Provider((ref) {
   final router = GoRouter(
@@ -36,6 +37,13 @@ final appRouterProvider = Provider((ref) {
         },
         builder: (context, state) {
           return HomeView();
+        },
+      ),
+      GoRoute(
+        name: AppRoutes.transcriptions,
+        path: AppRoutes.transcriptions,
+        builder: (context, state) {
+          return TranscriptionsView();
         },
       ),
     ],

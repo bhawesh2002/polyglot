@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:polyglot/ui/home/views/home_view.dart';
+import 'package:go_router/go_router.dart';
+import 'package:polyglot/routing/app_routes.dart';
 import 'package:polyglot/utils/extension.dart';
 
 class AppSidebar extends StatefulWidget {
@@ -13,11 +14,12 @@ class _SidebarState extends State<AppSidebar> {
   @override
   Widget build(BuildContext context) {
     final Map<int, Map<String, dynamic>> tabs = {
-      0: {"name": "Dashboard", "icon": Icons.home, "screen": HomeView()},
+      0: {"name": "Dashboard", "icon": Icons.home, "route": AppRoutes.home},
       1: {
         "name": "Transcriptions",
         "icon": Icons.transcribe_rounded,
         "detail": "View, edit or delete your transcriptions",
+        "route": AppRoutes.transcriptions,
       },
       2: {
         "name": "AI Models",
@@ -60,12 +62,12 @@ class _SidebarState extends State<AppSidebar> {
                         : null,
                     leading: Icon(tab['icon']),
                     onTap: () {
-                      if (tab.containsKey('screen')) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => tab['screen'],
-                          ),
-                        );
+                      if (tab.containsKey('route')) {
+                        if (index == 0) {
+                          context.goNamed(tab['route']);
+                        } else {
+                          context.pushNamed(tab['route']);
+                        }
                       }
                     },
                   ),
