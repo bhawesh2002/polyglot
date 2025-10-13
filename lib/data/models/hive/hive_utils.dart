@@ -19,7 +19,7 @@ abstract class HiveUtils {
   static Box<TranscriptionSource> get transcriptionSourceBox =>
       Hive.box<TranscriptionSource>(transcriptionSourceBoxName);
 
-  static Future<void> openBoxes({force = false}) async {
+  static Future<void> openBoxes({bool force = false}) async {
     if (_boxesOpened && !force) return;
     final box1 = await Hive.openBox<Transcription>(transcriptionBoxName);
     _openedBoxMap[Transcription] = box1;
@@ -35,9 +35,14 @@ abstract class HiveUtils {
     return _openedBoxMap[T] as Box<T>;
   }
 
+  /// specify [keys] to listen to specific value(s)
+  /// stored in the box
+  static getBoxListener<T>({List<String>? keys}) =>
+      HiveUtils.getBox<T>().listenable(keys: keys);
+
   Future<void> store<T>(obj, String key) async {
     if (!HiveUtils.openedBoxMap.containsKey(T)) {
-      await HiveUtils.openBoxes();
+      await HiveUtils.openBoxes(force: true);
     }
 
     final box = HiveUtils.getBox<T>();
@@ -46,7 +51,7 @@ abstract class HiveUtils {
 
   Future<void> delete<T>({String? id}) async {
     if (!HiveUtils.openedBoxMap.containsKey(T)) {
-      await HiveUtils.openBoxes();
+      await HiveUtils.openBoxes(force: true);
     }
 
     final box = HiveUtils.getBox<T>();
