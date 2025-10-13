@@ -61,4 +61,17 @@ class TranscriptionRepository {
       rethrow;
     }
   }
+
+  Future<TranscriptionSource?> getTranscriptionSource(String id) async {
+    try {
+      return HiveUtils.transcriptionSourceBox.get(id);
+    } catch (e, stack) {
+      _logger.severe(
+        "getTranscriptionSource(): Error while getting transcription by $id",
+        e,
+        stack,
+      );
+      rethrow;
+    }
+  }
 }
