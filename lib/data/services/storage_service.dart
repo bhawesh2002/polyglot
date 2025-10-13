@@ -72,8 +72,16 @@ class StorageService {
   }
 
   static Future<String> readTranscriptionFile(String fileName) async {
-    final filePath = p.join(transcriptionDirPath, fileName);
+    final filePath = p.join(appDocDirLoc, fileName);
     final data = await File(filePath).readAsString();
     return data;
+  }
+
+  static Future<bool> deleteFile(String filePath) async {
+    final file = File(filePath);
+    if (await file.exists()) {
+      await file.delete();
+    }
+    return true;
   }
 }
