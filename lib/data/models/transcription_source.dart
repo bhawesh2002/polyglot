@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:polyglot/data/models/converters/duration_converter.dart';
 import 'package:polyglot/data/models/hive/hive_utils.dart';
 import 'package:polyglot/data/models/media_stream.dart';
+import 'package:polyglot/data/services/storage_service.dart';
 import 'package:polyglot/utils/enums.dart';
 import 'package:uuid/uuid.dart';
 part 'transcription_source.freezed.dart';
@@ -231,6 +232,7 @@ class TranscriptionSource extends HiveUtils with _$TranscriptionSource {
   }
 
   Future<void> deleteMe() async {
+    if (isAudioExtracted) await StorageService.deleteFile(extractedAudioPath!);
     return await super.delete<TranscriptionSource>(id: id);
   }
 }

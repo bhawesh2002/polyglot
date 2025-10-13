@@ -3,7 +3,6 @@ import 'package:polyglot/data/models/hive/hive_utils.dart';
 import 'package:polyglot/data/models/transcription.dart';
 import 'package:polyglot/data/models/transcription_source.dart';
 import 'package:polyglot/data/models/translation.dart';
-import 'package:polyglot/data/services/storage_service.dart';
 import 'package:polyglot/data/services/transcription_service.dart';
 import 'package:polyglot/data/services/translation_service.dart';
 
@@ -56,28 +55,6 @@ class TranscriptionRepository {
     } catch (e, stack) {
       _logger.severe(
         "getTranscription(): Error while getting transcription by $id",
-        e,
-        stack,
-      );
-      rethrow;
-    }
-  }
-
-  Future<bool> deleteTranscriptionSource(TranscriptionSource source) async {
-    try {
-      if (source.isAudioExtracted) {
-        _logger.info("Deleting audio file");
-        await StorageService.deleteFile(source.extractedAudioPath!);
-      }
-      _logger.info("Deleting source");
-
-      source.deleteMe();
-      _logger.info("Deletion successful");
-
-      return true;
-    } catch (e, stack) {
-      _logger.severe(
-        "deleteTranscriptionSource(): Error while deleting transcription source",
         e,
         stack,
       );
