@@ -47,6 +47,7 @@ flutter:
 
   assets:
     - assets/fonts/
+    - assets/models/
 
   fonts:
     - family: Typold #Designer:Jonathan Hill ; Link: https://font.download/font/typold
