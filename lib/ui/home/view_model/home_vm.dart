@@ -27,6 +27,7 @@ class HomeVm extends _$HomeVm {
   Future<void> initialize() async {
     try {
       state = HomeVmState(initialized: false);
+      await _transcriptionRepository.initialize();
       state = state.copyWith(initialized: true);
     } catch (e, stack) {
       _logger.severe("initialize(): Unable to initialize", e, stack);
