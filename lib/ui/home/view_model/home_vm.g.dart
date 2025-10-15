@@ -40,7 +40,7 @@ final class HomeVmProvider extends $NotifierProvider<HomeVm, HomeVmState> {
   }
 }
 
-String _$homeVmHash() => r'20e333cc9eddf59d9cfd8c69197beff0b3704bd1';
+String _$homeVmHash() => r'ae728624e883d491aa2ee54d8004d47c8d19b644';
 
 abstract class _$HomeVm extends $Notifier<HomeVmState> {
   HomeVmState build();

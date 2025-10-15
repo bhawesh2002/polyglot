@@ -2,6 +2,7 @@ import 'package:logging/logging.dart';
 import 'package:polyglot/data/models/media_stream.dart';
 import 'package:polyglot/data/models/transcription_source.dart';
 import 'package:polyglot/data/repositories/audio_extraction_repository.dart';
+import 'package:polyglot/data/repositories/transcription_repository.dart';
 import 'package:polyglot/data/repositories_provider.dart';
 import 'package:polyglot/ui/home/view_model/state/home_vm_state.dart';
 import 'package:polyglot/utils/exceptions.dart';
@@ -14,12 +15,14 @@ class HomeVm extends _$HomeVm {
   @override
   HomeVmState build() {
     _audioExtractionRepository = ref.watch(audioExtractionRepositoryProvider);
+    _transcriptionRepository = ref.watch(transcriptionRepositoryProvider);
     initialize();
     return state;
   }
 
   final Logger _logger = Logger("HomeVm");
   late final AudioExtractionRepository _audioExtractionRepository;
+  late final TranscriptionRepository _transcriptionRepository;
 
   Future<void> initialize() async {
     try {
@@ -89,6 +92,21 @@ class HomeVm extends _$HomeVm {
     } catch (e, stack) {
       state = state.copyWith(processingFile: false);
       _handleError("beginAudioExtraction(): Unable to pick video", e, stack);
+    }
+  }
+
+  Future<void> transcribe() async {
+    if (state.transcriptionSource == null) return;
+    try {
+      state = state.copyWith(transcribing: true);
+      _logger.info("Transcribing Source");
+      await _transcriptionRepository.transcribe(state.transcriptionSource!);
+      _logger.info("Transcribed Source");
+
+      state = state.copyWith(transcribing: false);
+    } catch (e, stack) {
+      state = state.copyWith(transcribing: false);
+      _handleError("transcribe(): Unable to pick transcribe", e, stack);
     }
   }
 
