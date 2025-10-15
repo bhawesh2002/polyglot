@@ -13,6 +13,7 @@ abstract class HomeVmState with _$HomeVmState {
     @Default(false) bool pickingFile,
     @Default(false) bool processingFile,
     @Default(false) bool extractingAudio,
+    @Default(false) bool transcribing,
     Exception? exception,
   }) = _HomeVmState;
 }
