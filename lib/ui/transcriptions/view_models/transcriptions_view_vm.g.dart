@@ -42,7 +42,7 @@ final class TranscriptionsViewVmProvider
 }
 
 String _$transcriptionsViewVmHash() =>
-    r'8393ba3870fa36b0188b24b65eb1ea48095bc6c1';
+    r'b7553ee4b446dbc37c7a0f92803071e793cff952';
 
 abstract class _$TranscriptionsViewVm
     extends $Notifier<TranscriptionsViewVmState> {
