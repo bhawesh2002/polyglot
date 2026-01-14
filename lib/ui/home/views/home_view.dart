@@ -212,29 +212,38 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       viewModel.transcriptionSource!.isAudioExtracted)
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
+                      child: Column(
                         children: [
-                          Text(
-                            "Audio Extracted Successfully",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                viewModel.transcribing
+                                    ? "Transcribing"
+                                    : "Audio Extracted Successfully",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              await vmNotifier.transcribe();
+                            },
+                            child: Row(
+                              children: [
+                                Text("Transcribe"),
+                                if (viewModel.transcribing)
+                                  CircularProgressIndicator(),
+                              ],
                             ),
                           ),
-                          if (viewModel.extractingAudio)
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 18.0,
-                              ),
-                              child: SizedBox.square(
-                                dimension: 20,
-                                child: CircularProgressIndicator(),
-                              ),
-                            ),
                         ],
                       ),
                     ),
+
                   if (viewModel.transcriptionSource != null)
                     Expanded(
                       child: SingleChildScrollView(
