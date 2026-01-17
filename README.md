@@ -1,3 +1,3 @@
 # polyglot
 
-A new Flutter project.
+An AI driven live transcription and translation service
