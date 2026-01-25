@@ -1,3 +1,3 @@
 # polyglot
 
-An AI driven live transcription and translation service
+Fully offline AI driven live transcription and translation service. 
